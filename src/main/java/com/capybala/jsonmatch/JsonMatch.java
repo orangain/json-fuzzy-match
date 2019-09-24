@@ -7,16 +7,26 @@ import com.intuit.karate.core.ScenarioContext;
 import com.jayway.jsonpath.DocumentContext;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 
 public class JsonMatch {
-    public static boolean assertJsonMatches(String actualJson, String expectedJson) {
+
+    public static void assertJsonMatches(String actualJson, String patternJson) {
+        Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
+        if (errorMessage.isPresent()) {
+            throw new AssertionError(String.format("%nExpecting:%n %s%nto match pattern:%n %s%n%s", actualJson, patternJson, errorMessage.get()));
+        }
+    }
+
+    public static Optional<String> jsonMatches(String actualJson, String patternJson) {
         ScenarioContext ctx = getContext();
         DocumentContext doc = JsonUtils.toJsonDoc(actualJson);
         ScriptValue actual = new ScriptValue(doc);
 
-        AssertionResult result = Script.matchJsonOrObject(MatchType.EQUALS, actual, "$", expectedJson, ctx);
-        return result.pass;
+        AssertionResult result = Script.matchJsonOrObject(MatchType.EQUALS, actual, "$", patternJson, ctx);
+
+        return result.pass ? Optional.empty() : Optional.of(result.message);
     }
 
     private static ScenarioContext getContext() {

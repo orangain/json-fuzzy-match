@@ -2,6 +2,8 @@ package com.capybala.jsonmatch;
 
 import org.assertj.core.api.AbstractAssert;
 
+import java.util.Optional;
+
 public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
 
     public JsonStringAssert(String s, Class<?> selfType) {
@@ -12,10 +14,11 @@ public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
         return new JsonStringAssert(actual, JsonStringAssert.class);
     }
 
-    public JsonStringAssert jsonMatches(String expected) {
+    public JsonStringAssert jsonMatches(String patternJson) {
         isNotNull();
 
-        JsonMatch.assertJsonMatches(actual, expected);
+        Optional<String> errorMessage = JsonMatch.jsonMatches(actual, patternJson);
+        errorMessage.ifPresent(m -> failWithMessage("%nExpecting:%n %s%nto match pattern:%n %s%n%s", actual, patternJson, m));
 
         return this;
     }
