@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.3.50"
 }
 
-group = "com.capybala.json-match"
+group = "com.capybala.jsonmatch"
 version = "1.0-SNAPSHOT"
 
 repositories {
