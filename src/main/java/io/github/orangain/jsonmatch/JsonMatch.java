@@ -1,4 +1,4 @@
-package com.capybala.jsonmatch;
+package io.github.orangain.jsonmatch;
 
 import com.intuit.karate.*;
 import com.intuit.karate.core.FeatureContext;

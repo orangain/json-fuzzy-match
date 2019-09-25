@@ -1,4 +1,4 @@
-package com.capybala.jsonmatch;
+package io.github.orangain.jsonmatch;
 
 import org.assertj.core.api.Assertions.assertThatCode
 import org.assertj.core.api.Assertions.assertThatThrownBy
