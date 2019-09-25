@@ -1,8 +1,9 @@
 package com.capybala.jsonmatch;
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThatCode
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test
-import java.lang.AssertionError
+
 
 class JsonMatchTest {
 
@@ -17,13 +18,15 @@ class JsonMatchTest {
     fun testAssertJsonNotMatches() {
         assertThatThrownBy {
             JsonMatch.assertJsonMatches("{ foo: 'bar' }", "{ foo: '#null' }")
-        }.isInstanceOf(AssertionError::class.java).hasMessage("\n" + """
+        }.isInstanceOf(AssertionError::class.java).hasMessage(
+            "\n" + """
             Expecting:
              { foo: 'bar' }
             to match pattern:
              { foo: '#null' }
             path: ${'$'}.foo, actual: 'bar', expected: '#null', reason: not-null
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     @Test
@@ -35,12 +38,14 @@ class JsonMatchTest {
     fun testJsonNotMatches() {
         assertThatThrownBy {
             JsonStringAssert.assertThat("{ foo: 'bar' }").jsonMatches("{ foo: '#null' }")
-        }.isInstanceOf(AssertionError::class.java).hasMessage("\n" + """
+        }.isInstanceOf(AssertionError::class.java).hasMessage(
+            "\n" + """
             Expecting:
              { foo: 'bar' }
             to match pattern:
              { foo: '#null' }
             path: ${'$'}.foo, actual: 'bar', expected: '#null', reason: not-null
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 }

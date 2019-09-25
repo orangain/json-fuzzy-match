@@ -4,6 +4,7 @@ import org.assertj.core.api.AbstractAssert;
 
 import java.util.Optional;
 
+
 public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
 
     public JsonStringAssert(String s, Class<?> selfType) {
