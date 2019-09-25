@@ -20,7 +20,7 @@ public class JsonMatch {
 
     public static Optional<String> jsonMatches(String actualJson, String patternJson) {
         ScenarioContext ctx = getContext();
-        DocumentContext doc = JsonUtils.toJsonDoc(actualJson);
+        DocumentContext doc = JsonUtils.toJsonDocStrict(actualJson);
         ScriptValue actual = new ScriptValue(doc);
 
         AssertionResult result = Script.matchJsonOrObject(MatchType.EQUALS, actual, "$", patternJson, ctx);
