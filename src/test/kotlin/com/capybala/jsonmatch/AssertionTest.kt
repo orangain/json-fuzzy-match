@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test
 
 
-class JsonMatchTest {
+class AssertionTest {
 
     @Test
     fun testAssertJsonMatches() {
