@@ -7,7 +7,7 @@ plugins {
     id("com.jfrog.bintray") version "1.8.4"
 }
 
-group = "com.capybala.jsonmatch"
+group = "com.capybala.json-fuzzy-match"
 version = "0.1.1"
 
 repositories {
@@ -51,11 +51,11 @@ publishing {
             pom {
                 name.set(project.name)
                 description.set("Custom assertion to check JSON string matches pattern.")
-                url.set("https://github.com/orangain/jsonmatch")
+                url.set("https://github.com/orangain/json-fuzzy-match")
                 licenses {
                     license {
                         name.set("MIT License")
-                        url.set("https://github.com/orangain/jsonmatch/blob/master/LICENSE")
+                        url.set("https://github.com/orangain/json-fuzzy-match/blob/master/LICENSE")
                         distribution.set("repo")
                     }
                 }
@@ -67,7 +67,7 @@ publishing {
                     }
                 }
                 scm {
-                    url.set("https://github.com/orangain/jsonmatch")
+                    url.set("https://github.com/orangain/json-fuzzy-match")
                 }
             }
         }
@@ -82,7 +82,7 @@ bintray {
     setPublications("maven")
     with(pkg) {
         repo = "maven"
-        name = "jsonmatch"
+        name = "json-fuzzy-match"
         with(version) {
             name = project.version as String
         }

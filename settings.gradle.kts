@@ -1,2 +1,2 @@
-rootProject.name = "jsonmatch"
+rootProject.name = "json-fuzzy-match"
 
