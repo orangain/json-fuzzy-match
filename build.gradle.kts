@@ -7,7 +7,7 @@ plugins {
     id("com.jfrog.bintray") version "1.8.4"
 }
 
-group = "com.capybala.json-fuzzy-match"
+group = "io.github.orangain.json-fuzzy-match"
 version = "0.2.0"
 
 repositories {
