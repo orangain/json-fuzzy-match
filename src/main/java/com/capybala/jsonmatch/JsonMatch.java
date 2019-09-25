@@ -30,7 +30,7 @@ public class JsonMatch {
 
     private static ScenarioContext getContext() {
         FeatureContext featureContext = FeatureContext.forEnv();
-        CallContext callContext = new CallContext(null, true);
+        CallContext callContext = new CallContext(null, false);
         return new ScenarioContext(featureContext, callContext, null, null);
     }
 }
