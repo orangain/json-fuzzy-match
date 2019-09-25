@@ -30,7 +30,7 @@ public class JsonMatch {
 
     private static ScenarioContext getContext() {
         FeatureContext featureContext = FeatureContext.forEnv();
-        CallContext callContext = new CallContext(null, false);
+        CallContext callContext = new CallContext(null, null, 0, null, -1, null, false, false, "com.intuit.karate.http.DummyHttpClient", null, null, false);
         return new ScenarioContext(featureContext, callContext, null, null);
     }
 }
