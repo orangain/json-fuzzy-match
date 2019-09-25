@@ -6,7 +6,6 @@ import com.intuit.karate.core.MatchType;
 import com.intuit.karate.core.ScenarioContext;
 import com.jayway.jsonpath.DocumentContext;
 
-import java.nio.file.Path;
 import java.util.Optional;
 
 
@@ -30,8 +29,7 @@ public class JsonMatch {
     }
 
     private static ScenarioContext getContext() {
-        Path featureDir = FileUtils.getPathContaining(JsonMatch.class);
-        FeatureContext featureContext = FeatureContext.forWorkingDir("dev", featureDir.toFile());
+        FeatureContext featureContext = FeatureContext.forEnv();
         CallContext callContext = new CallContext(null, true);
         return new ScenarioContext(featureContext, callContext, null, null);
     }
