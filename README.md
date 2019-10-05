@@ -31,6 +31,7 @@ assertThat(tree.get("timestamp").isTextual).isTrue()
 you can simply write using json-fuzzy-match:
 
 ```kt
+// language=JSON
 JsonStringAssert.assertThat(response.content).jsonMatches("""
     {
       "id": "#uuid",

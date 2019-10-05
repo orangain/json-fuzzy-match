@@ -5,6 +5,7 @@ import org.junit.Test
 
 class BasicValidatorTest {
 
+    // language=JSON
     private val basicJson = """
             {
                 "string": "foo",
@@ -16,6 +17,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenNoValidatorIsUsed() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -44,6 +46,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenFieldOrderIsDifferent() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -59,6 +62,7 @@ class BasicValidatorTest {
     @Test
     fun failWhenValueIsDifferent() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
@@ -76,6 +80,7 @@ class BasicValidatorTest {
     @Test
     fun failWhenTypeIsDifferent() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
@@ -93,6 +98,7 @@ class BasicValidatorTest {
     @Test
     fun failWhenMoreFieldsAreRequired() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
@@ -111,6 +117,7 @@ class BasicValidatorTest {
     @Test
     fun failWhenLessFieldsAreRequired() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
@@ -126,6 +133,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenExistingFieldIsIgnored() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -140,6 +148,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenAdditionalFieldIsIgnored() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -155,13 +164,14 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenNull() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
                 "string": "foo",
                 "number": 42,
                 "boolean": true,
-                "null": #null
+                "null": "#null"
             }
         """.trimIndent()
         )
@@ -170,10 +180,11 @@ class BasicValidatorTest {
     @Test
     fun failWhenNotNull() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
-                "string": #null,
+                "string": "#null",
                 "number": 42,
                 "boolean": true,
                 "null": null
@@ -186,6 +197,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenNotNull() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -201,13 +213,14 @@ class BasicValidatorTest {
     @Test
     fun failWhenNull() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
                 "string": "foo",
                 "number": 42,
                 "boolean": true,
-                "null": #notnull
+                "null": "#notnull"
             }
         """.trimIndent()
             )
@@ -217,6 +230,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenPresent() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {
@@ -232,6 +246,7 @@ class BasicValidatorTest {
     @Test
     fun failWhenAdditionalFieldDoesNotPresent() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(basicJson).jsonMatches(
                 """
             {
@@ -249,6 +264,7 @@ class BasicValidatorTest {
 
     @Test
     fun matchWhenNotPresent() {
+        // language=JSON
         JsonStringAssert.assertThat(basicJson).jsonMatches(
             """
             {

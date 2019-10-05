@@ -5,6 +5,7 @@ import org.junit.Test
 
 class TypeValidatorTest {
 
+    // language=JSON
     private val complexJson = """
             {
                 "string": "foo",
@@ -20,6 +21,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchTypes() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
@@ -36,13 +38,14 @@ class TypeValidatorTest {
     @Test
     fun failWhenTypeDoesNotMatch() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(complexJson).jsonMatches(
                 """
                 {
                     "string": "foo",
                     "number": 42,
                     "boolean": true,
-                    "object": #string,
+                    "object": "#string",
                     "array": [1, 2]
                 }
             """.trimIndent()
@@ -53,6 +56,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchUuid() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
@@ -79,6 +83,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchRegex() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
@@ -97,6 +102,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchArray() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
@@ -112,6 +118,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchArrayLength() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
@@ -128,6 +135,7 @@ class TypeValidatorTest {
     @Test
     fun failWhenArrayLengthIsDifferent() {
         Assertions.assertThatThrownBy {
+            // language=JSON
             JsonStringAssert.assertThat(complexJson).jsonMatches(
                 """
                 {
@@ -145,6 +153,7 @@ class TypeValidatorTest {
 
     @Test
     fun matchArrayLengthAndTypes() {
+        // language=JSON
         JsonStringAssert.assertThat(complexJson).jsonMatches(
             """
             {
