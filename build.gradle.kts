@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.github.orangain.json-fuzzy-match"
-version = "0.3.0"
+version = "0.3.1"
 
 repositories {
     mavenCentral()
