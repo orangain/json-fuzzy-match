@@ -126,6 +126,14 @@ There are several markers as followings:
 
 For more detail, please see the [Fuzzy Matching](https://intuit.github.io/karate/#fuzzy-matching) section of the Karate's document.
 
+## Development
+
+Release to Bintray.
+
+```
+./gradlew bintrayUpload
+```
+
 ## License
 
 MIT License. See `LICENSE`.
