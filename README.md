@@ -128,7 +128,7 @@ For more detail, please see the [Fuzzy Matching](https://intuit.github.io/karate
 
 ## Development
 
-Release to Bintray.
+Release an artifact to Bintray. Then publish it from [Web console](https://bintray.com/orangain/maven/json-fuzzy-match).
 
 ```
 ./gradlew bintrayUpload
