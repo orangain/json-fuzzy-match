@@ -75,8 +75,8 @@ publishing {
 }
 
 bintray {
-    val bintrayUser: String by project
-    val bintrayAPIKey: String by project
+    val bintrayUser: String? by project
+    val bintrayAPIKey: String? by project
     user = bintrayUser
     key = bintrayAPIKey
     setPublications("maven")
