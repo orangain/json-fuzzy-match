@@ -31,9 +31,10 @@ class BasicValidatorTest {
     }
 
     @Test
-    fun matchWhenNoValidatorIsUsedInSmartJson() {
-        JsonStringAssert.assertThat(basicJson).jsonMatches(
-            """
+    fun smartJsonIsNoLongerSupported() {
+        Assertions.assertThatThrownBy {
+            JsonStringAssert.assertThat(basicJson).jsonMatches(
+                """
             {
                 string: 'foo',
                 number: 42,
@@ -41,7 +42,9 @@ class BasicValidatorTest {
                 null: null,
             }
         """.trimIndent()
-        )
+            )
+        }.isInstanceOf(AssertionError::class.java)
+            .hasMessageContaining("Failed to parse patternJson")
     }
 
     @Test

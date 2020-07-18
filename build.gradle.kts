@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation("com.intuit.karate:karate-core:0.9.5")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.11.1")
     implementation("org.assertj:assertj-core:3.11.1")
     testImplementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
