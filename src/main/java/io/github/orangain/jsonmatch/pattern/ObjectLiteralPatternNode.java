@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -18,11 +17,6 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
     public ObjectLiteralPatternNode(@NotNull String expected, @NotNull Map<String, JsonPatternNode> children) {
         super(expected);
         this.children = children;
-    }
-
-    @Nullable
-    private JsonPatternNode getChild(@NotNull String fieldName) {
-        return children.get(fieldName);
     }
 
     @NotNull
