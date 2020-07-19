@@ -8,6 +8,7 @@ import com.intuit.karate.CallContext;
 import com.intuit.karate.core.FeatureContext;
 import com.intuit.karate.core.ScenarioContext;
 import io.github.orangain.jsonmatch.marker.Marker;
+import io.github.orangain.jsonmatch.pattern.JsonPatternNode;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,7 +39,11 @@ public class JsonMatch {
             return Optional.of("Failed to parse patternJson");
         }
 
-        Optional<JsonMatchError> error = patternMatches("$", actualTree, patternTree);
+        JsonPatternNode rootPattern = JsonMatchPatternParser.parse(patternTree);
+
+        Optional<JsonMatchError> error = rootPattern.matches(JsonPath.ROOT, actualTree);
+
+//        Optional<JsonMatchError> error = patternMatches("$", actualTree, patternTree);
         return error.map(JsonMatchError::toString);
 
 
@@ -120,7 +125,7 @@ public class JsonMatch {
                     return error;
                 }
             }
-            
+
             return Optional.empty();
         } else {
             return actualNode.equals(patternNode)
