@@ -1,12 +1,14 @@
 package io.github.orangain.jsonmatch;
 
+import org.jetbrains.annotations.NotNull;
+
 public class JsonMatchError {
-    private final String path;
+    private final JsonPath path;
     private final String reason;
     private final String actual;
     private final String expected;
 
-    public JsonMatchError(String path, String actual, String expected, String reason) {
+    public JsonMatchError(@NotNull JsonPath path, @NotNull String actual, @NotNull String expected, @NotNull String reason) {
         this.path = path;
         this.actual = actual;
         this.expected = expected;

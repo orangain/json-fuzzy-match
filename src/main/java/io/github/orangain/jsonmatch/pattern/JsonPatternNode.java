@@ -19,7 +19,7 @@ public abstract class JsonPatternNode {
 
     @NotNull
     protected JsonMatchError error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
-        return new JsonMatchError(path.toString(), actualNode.toString(), expected, reason);
+        return new JsonMatchError(path, actualNode.toString(), expected, reason);
     }
 
     protected boolean canBeMissing() {
