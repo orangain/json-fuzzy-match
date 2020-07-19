@@ -1,5 +1,6 @@
-package io.github.orangain.jsonmatch
+package io.github.orangain.jsonmatch.marker
 
+import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
 import org.junit.Ignore
 import org.junit.Test
@@ -11,19 +12,22 @@ class UUIDMarkerTest {
     @Test
     fun matchUUID() {
         // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "2c0a9fd7-be2c-4bc2-b134-acc3fa13d400" }""").jsonMatches(patternJson)
+        JsonStringAssert.assertThat("""{ "a": "2c0a9fd7-be2c-4bc2-b134-acc3fa13d400" }""")
+            .jsonMatches(patternJson)
     }
 
     @Test
     fun matchRandomUUID() {
         // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "${UUID.randomUUID()}" }""").jsonMatches(patternJson)
+        JsonStringAssert.assertThat("""{ "a": "${UUID.randomUUID()}" }""")
+            .jsonMatches(patternJson)
     }
 
     @Test
     fun matchUpperCaseUUID() {
         // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "2C0A9FD7-BE2C-4BC2-B134-ACC3FA13D400" }""").jsonMatches(patternJson)
+        JsonStringAssert.assertThat("""{ "a": "2C0A9FD7-BE2C-4BC2-B134-ACC3FA13D400" }""")
+            .jsonMatches(patternJson)
     }
 
     @Test
@@ -48,7 +52,8 @@ class UUIDMarkerTest {
     fun doesNotMatchNoHyphenString() {
         Assertions.assertThatThrownBy {
             // language=JSON
-            JsonStringAssert.assertThat("""{ "a": "2c0a9fd7be2c4bc2b134acc3fa13d400" }""").jsonMatches(patternJson)
+            JsonStringAssert.assertThat("""{ "a": "2c0a9fd7be2c4bc2b134acc3fa13d400" }""")
+                .jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
             .hasMessageContaining("path: \$.a, actual: '2c0a9fd7be2c4bc2b134acc3fa13d400', expected: '#uuid', reason: not a valid #uuid")
     }
@@ -58,7 +63,8 @@ class UUIDMarkerTest {
     fun doesNotMatchShorterString() {
         Assertions.assertThatThrownBy {
             // language=JSON
-            JsonStringAssert.assertThat("""{ "a": "2c0a9fd7-be2c-4bc2-b134-acc3fa13d40" }""").jsonMatches(patternJson)
+            JsonStringAssert.assertThat("""{ "a": "2c0a9fd7-be2c-4bc2-b134-acc3fa13d40" }""")
+                .jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
             .hasMessageContaining("path: \$.a, actual: '2c0a9fd7-be2c-4bc2-b134-acc3fa13d40', expected: '#uuid', reason: not a valid #uuid")
     }

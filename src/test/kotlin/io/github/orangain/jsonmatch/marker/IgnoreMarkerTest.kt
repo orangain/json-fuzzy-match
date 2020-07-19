@@ -1,5 +1,6 @@
-package io.github.orangain.jsonmatch
+package io.github.orangain.jsonmatch.marker
 
+import io.github.orangain.jsonmatch.JsonStringAssert
 import org.junit.Test
 
 class IgnoreMarkerTest {

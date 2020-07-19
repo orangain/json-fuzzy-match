@@ -1,10 +1,11 @@
-package io.github.orangain.jsonmatch
+package io.github.orangain.jsonmatch.marker
 
+import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
 import org.junit.Test
 
-class ArrayMarkerTest {
-    private val patternJson = """{ "a": "#array" }"""
+class ArrayBracketMarkerTest {
+    private val patternJson = """{ "a": "#[]" }"""
 
     @Test
     fun doesNotMatchMissingField() {
@@ -12,7 +13,7 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#array}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("path: \$, actual: {}, expected: {a=#[]}, reason: all key-values did not match, expected has un-matched keys: [a]")
     }
 
     @Test
@@ -21,7 +22,7 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#array', reason: not an array or list")
+            .hasMessageContaining("path: $.a, actual: null, expected: '#[]', reason: not an array or list")
     }
 
     @Test
@@ -30,7 +31,7 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": true }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: true, expected: '#array', reason: not an array or list")
+            .hasMessageContaining("path: $.a, actual: true, expected: '#[]', reason: not an array or list")
     }
 
     @Test
@@ -39,7 +40,7 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 1, expected: '#array', reason: not an array or list")
+            .hasMessageContaining("path: $.a, actual: 1, expected: '#[]', reason: not an array or list")
     }
 
     @Test
@@ -48,7 +49,7 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "true" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 'true', expected: '#array', reason: not an array or list")
+            .hasMessageContaining("path: $.a, actual: 'true', expected: '#[]', reason: not an array or list")
     }
 
     @Test
@@ -69,6 +70,6 @@ class ArrayMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: {}, expected: '#array', reason: not an array or list")
+            .hasMessageContaining("path: $.a, actual: {}, expected: '#[]', reason: not an array or list")
     }
 }
