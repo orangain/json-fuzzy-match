@@ -2,7 +2,6 @@ package io.github.orangain.jsonmatch.marker
 
 import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
-import org.junit.Ignore
 import org.junit.Test
 import java.util.*
 
@@ -59,7 +58,6 @@ class UUIDMarkerTest {
     }
 
     @Test
-    @Ignore("UUID.fromString() accepts shorter string. See https://bugs.openjdk.java.net/browse/JDK-8202760")
     fun doesNotMatchShorterString() {
         Assertions.assertThatThrownBy {
             // language=JSON

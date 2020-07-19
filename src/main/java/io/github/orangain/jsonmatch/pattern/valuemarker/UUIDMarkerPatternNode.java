@@ -30,9 +30,14 @@ public class UUIDMarkerPatternNode extends ValuePatternNode {
         if (!actualNode.isTextual()) {
             return Optional.of(error(path, actualNode, "not a string"));
         }
+        String value = actualNode.textValue();
+        if (value.length() != 36) {
+            // UUID.fromString() accepts a string shorter than 36 chars. See https://bugs.openjdk.java.net/browse/JDK-8202760
+            return Optional.of(error(path, actualNode, "not a valid #uuid"));
+        }
 
         try {
-            UUID.fromString(actualNode.textValue());
+            UUID.fromString(value);
         } catch (IllegalArgumentException ex) {
             return Optional.of(error(path, actualNode, "not a valid #uuid"));
         }
