@@ -9,6 +9,14 @@ import java.util.Optional;
 
 
 public class JsonMatch {
+    private static ObjectMapper objectMapper;
+
+    private static ObjectMapper getObjectMapper() {
+        if (objectMapper == null) {
+            objectMapper = new ObjectMapper();
+        }
+        return objectMapper;
+    }
 
     public static void assertJsonMatches(String actualJson, String patternJson) {
         Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
@@ -18,7 +26,7 @@ public class JsonMatch {
     }
 
     public static Optional<String> jsonMatches(String actualJson, String patternJson) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = getObjectMapper();
         JsonNode actualTree;
         JsonNode patternTree;
 
