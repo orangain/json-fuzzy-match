@@ -1,7 +1,5 @@
 package io.github.orangain.jsonmatch;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 public class JsonMatchError {
     private final String path;
     private final String reason;
@@ -13,10 +11,6 @@ public class JsonMatchError {
         this.actual = actual;
         this.expected = expected;
         this.reason = reason;
-    }
-
-    public static JsonMatchError of(JsonPath path, JsonNode actual, JsonNode expected, String reason) {
-        return new JsonMatchError(path.toString(), actual.toString(), expected.toString(), reason);
     }
 
     @Override
