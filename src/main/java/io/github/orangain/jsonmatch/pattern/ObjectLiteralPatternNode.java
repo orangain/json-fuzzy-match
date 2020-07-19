@@ -12,11 +12,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ObjectLiteralPatternNode extends ObjectPatternNode {
-    private final Map<String, JsonPatternNode> children;
+    private final Map<String, JsonPatternNode> expectedChildren;
 
-    public ObjectLiteralPatternNode(@NotNull String expected, @NotNull Map<String, JsonPatternNode> children) {
+    public ObjectLiteralPatternNode(@NotNull String expected, @NotNull Map<String, JsonPatternNode> expectedChildren) {
         super(expected);
-        this.children = children;
+        this.expectedChildren = expectedChildren;
     }
 
     @NotNull
@@ -25,10 +25,10 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         Set<String> actualFieldNames = new HashSet<>();
         actualNode.fieldNames().forEachRemaining(actualFieldNames::add);
 
-        Set<String> childFieldNames = children.keySet();
+        Set<String> expectedFieldNames = expectedChildren.keySet();
 
         Set<String> additionalFieldNames = new HashSet<>(actualFieldNames);
-        additionalFieldNames.removeAll(childFieldNames);
+        additionalFieldNames.removeAll(expectedFieldNames);
         if (!additionalFieldNames.isEmpty()) {
             String reason = "actual value has " + additionalFieldNames.size()
                     + " more key(s) than expected: {"
@@ -38,18 +38,18 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
             return Optional.of(error(path, actualNode, reason));
         }
 
-        Set<String> missingFieldNames = new HashSet<>(childFieldNames);
+        Set<String> missingFieldNames = new HashSet<>(expectedFieldNames);
         missingFieldNames.removeAll(actualFieldNames);
-        missingFieldNames.removeIf(childFieldName -> children.get(childFieldName).canBeMissing());
+        missingFieldNames.removeIf(expectedFieldName -> expectedChildren.get(expectedFieldName).canBeMissing());
         if (!missingFieldNames.isEmpty()) {
             String reason = "all key-values did not match, expected has un-matched keys: [" + String.join(", ", missingFieldNames) + "]";
             return Optional.of(error(path, actualNode, reason));
         }
 
-        for (String childFieldName : childFieldNames) {
-            Optional<JsonMatchError> error = children.get(childFieldName).matches(
-                    path.objectField(childFieldName),
-                    actualNode.path(childFieldName)// .path() can return missing node
+        for (String expectedFieldName : expectedFieldNames) {
+            Optional<JsonMatchError> error = expectedChildren.get(expectedFieldName).matches(
+                    path.objectField(expectedFieldName),
+                    actualNode.path(expectedFieldName)// .path() can return missing node
             );
             if (error.isPresent()) {
                 return error;

@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class ArrayLiteralPatternNode extends ArrayPatternNode {
-    private final List<JsonPatternNode> children;
+    private final List<JsonPatternNode> expectedChildren;
 
-    public ArrayLiteralPatternNode(@NotNull String expected, List<JsonPatternNode> children) {
+    public ArrayLiteralPatternNode(@NotNull String expected, List<JsonPatternNode> expectedChildren) {
         super(expected);
-        this.children = children;
+        this.expectedChildren = expectedChildren;
     }
 
     @NotNull
     @Override
     protected Optional<JsonMatchError> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
-        if (children.size() != actualNode.size()) {
+        if (expectedChildren.size() != actualNode.size()) {
             return Optional.of(error(jsonPath, actualNode, "actual array length was: " + actualNode.size()));
         }
         return Optional.empty();
@@ -28,8 +28,8 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
     @NotNull
     @Override
     protected Optional<JsonMatchError> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
-        for (int i = 0; i < children.size(); i++) {
-            Optional<JsonMatchError> error = children.get(i).matches(jsonPath.arrayItem(i), actualNode.get(i));
+        for (int i = 0; i < expectedChildren.size(); i++) {
+            Optional<JsonMatchError> error = expectedChildren.get(i).matches(jsonPath.arrayItem(i), actualNode.get(i));
             if (error.isPresent()) {
                 return error;
             }
