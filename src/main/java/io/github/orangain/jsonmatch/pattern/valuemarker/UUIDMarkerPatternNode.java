@@ -3,6 +3,7 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +19,7 @@ public class UUIDMarkerPatternNode extends ValuePatternNode {
 
     public static UUIDMarkerPatternNode getInstance() {
         if (instance == null) {
-            instance = new UUIDMarkerPatternNode("#uuid");
+            instance = new UUIDMarkerPatternNode(JsonUtil.toJsonString("#uuid"));
         }
         return instance;
     }

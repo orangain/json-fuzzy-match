@@ -19,7 +19,7 @@ class ArrayBracketSizeMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [], expected: '#[3]', reason: actual array length was: 0")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#[3]", reason: actual array length was: 0""")
     }
 
     @Test
@@ -28,7 +28,7 @@ class ArrayBracketSizeMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [1, 2] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [1,2], expected: '#[3]', reason: actual array length was: 2")
+            .hasMessageContaining("""path: $.a, actual: [1,2], expected: "#[3]", reason: actual array length was: 2""")
     }
 
     @Test
@@ -37,6 +37,6 @@ class ArrayBracketSizeMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [1, 2, 3, 4] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [1,2,3,4], expected: '#[3]', reason: actual array length was: 4")
+            .hasMessageContaining("""path: $.a, actual: [1,2,3,4], expected: "#[3]", reason: actual array length was: 4""")
     }
 }

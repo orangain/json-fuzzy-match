@@ -20,7 +20,7 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
     @Override
     protected Optional<JsonMatchError> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedChildren.size() != actualNode.size()) {
-            return Optional.of(error(jsonPath, actualNode, "actual array length was: " + actualNode.size()));
+            return Optional.of(error(jsonPath, actualNode, "actual and expected arrays are not the same size - " + actualNode.size() + ":" + expectedChildren.size()));
         }
         return Optional.empty();
     }

@@ -3,6 +3,7 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,7 @@ public class NotNullMarkerPatternNode extends ValuePatternNode {
 
     public static NotNullMarkerPatternNode getInstance() {
         if (instance == null) {
-            instance = new NotNullMarkerPatternNode("#notnull");
+            instance = new NotNullMarkerPatternNode(JsonUtil.toJsonString("#notnull"));
         }
         return instance;
     }

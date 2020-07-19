@@ -28,7 +28,7 @@ public class RegexMarkerPatternNode extends ValuePatternNode {
             return Optional.of(error(path, actualNode, "not a string"));
         }
         if (!pattern.matcher(actualNode.textValue()).matches()) {
-            return Optional.of(error(path, actualNode, "does not match"));
+            return Optional.of(error(path, actualNode, "regex match failed"));
         }
         return Optional.empty();
     }

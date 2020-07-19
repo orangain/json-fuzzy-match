@@ -19,7 +19,7 @@ class NotPresentMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#notpresent', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#notpresent", reason: not equal""")
     }
 
     @Test
@@ -28,6 +28,6 @@ class NotPresentMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 1, expected: '#notpresent', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: 1, expected: "#notpresent", reason: not equal""")
     }
 }

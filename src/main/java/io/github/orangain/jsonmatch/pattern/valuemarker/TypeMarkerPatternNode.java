@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,10 +14,10 @@ public class TypeMarkerPatternNode extends ValuePatternNode {
     private final JsonNodeType expectedNodeType;
     private final String reasonOnError;
 
-    public static TypeMarkerPatternNode NULL = new TypeMarkerPatternNode("\"#null\"", JsonNodeType.NULL, "not-null");
-    public static TypeMarkerPatternNode BOOLEAN = new TypeMarkerPatternNode("\"#boolean\"", JsonNodeType.BOOLEAN, "not a boolean");
-    public static TypeMarkerPatternNode NUMBER = new TypeMarkerPatternNode("\"#number\",", JsonNodeType.NUMBER, "not a number");
-    public static TypeMarkerPatternNode STRING = new TypeMarkerPatternNode("\"#string\"", JsonNodeType.STRING, "not a string");
+    public static TypeMarkerPatternNode NULL = new TypeMarkerPatternNode(JsonUtil.toJsonString("#null"), JsonNodeType.NULL, "not-null");
+    public static TypeMarkerPatternNode BOOLEAN = new TypeMarkerPatternNode(JsonUtil.toJsonString("#boolean"), JsonNodeType.BOOLEAN, "not a boolean");
+    public static TypeMarkerPatternNode NUMBER = new TypeMarkerPatternNode(JsonUtil.toJsonString("#number"), JsonNodeType.NUMBER, "not a number");
+    public static TypeMarkerPatternNode STRING = new TypeMarkerPatternNode(JsonUtil.toJsonString("#string"), JsonNodeType.STRING, "not a string");
 
     public TypeMarkerPatternNode(@NotNull String expected, JsonNodeType expectedNodeType, @NotNull String reasonOnError) {
         super(expected);

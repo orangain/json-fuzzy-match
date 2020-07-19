@@ -3,6 +3,7 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,7 @@ public class PresentMarkerPatternNode extends ValuePatternNode {
 
     public static PresentMarkerPatternNode getInstance() {
         if (instance == null) {
-            instance = new PresentMarkerPatternNode("#present");
+            instance = new PresentMarkerPatternNode(JsonUtil.toJsonString("#present"));
         }
         return instance;
     }

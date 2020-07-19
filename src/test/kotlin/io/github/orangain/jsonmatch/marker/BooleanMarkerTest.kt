@@ -13,7 +13,7 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#boolean}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#boolean"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test
@@ -22,7 +22,7 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#boolean', reason: not a boolean")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#boolean", reason: not a boolean""")
     }
 
     @Test
@@ -43,7 +43,7 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 1, expected: '#boolean', reason: not a boolean")
+            .hasMessageContaining("""path: $.a, actual: 1, expected: "#boolean", reason: not a boolean""")
     }
 
     @Test
@@ -52,7 +52,7 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "true" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 'true', expected: '#boolean', reason: not a boolean")
+            .hasMessageContaining("""path: $.a, actual: "true", expected: "#boolean", reason: not a boolean""")
     }
 
     @Test
@@ -61,7 +61,7 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [], expected: '#boolean', reason: not a boolean")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#boolean", reason: not a boolean""")
     }
 
     @Test
@@ -70,6 +70,6 @@ class BooleanMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: {}, expected: '#boolean', reason: not a boolean")
+            .hasMessageContaining("""path: $.a, actual: {}, expected: "#boolean", reason: not a boolean""")
     }
 }

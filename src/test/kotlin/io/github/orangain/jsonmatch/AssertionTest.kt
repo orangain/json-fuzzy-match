@@ -24,7 +24,7 @@ class AssertionTest {
              {"foo": "bar"}
             to match pattern:
              { "foo": "#null" }
-            path: ${'$'}.foo, actual: "bar", expected: "#null", reason: not-null
+            path: $.foo, actual: "bar", expected: "#null", reason: not-null
         """.trimIndent()
         )
     }
@@ -46,7 +46,7 @@ class AssertionTest {
              {"foo": "bar"}
             to match pattern:
              { "foo": "#null" }
-            path: ${'$'}.foo, actual: "bar", expected: "#null", reason: not-null
+            path: $.foo, actual: "bar", expected: "#null", reason: not-null
         """.trimIndent()
         )
     }

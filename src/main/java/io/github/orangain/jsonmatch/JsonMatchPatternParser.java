@@ -73,9 +73,9 @@ public class JsonMatchPatternParser {
             case "#notpresent":
                 return NotPresentMarkerPatternNode.getInstance();
             case "#array":
-                return new ArrayMarkerPatternNode(value);
+                return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value));
             case "#object":
-                return new ObjectMarkerPatternNode(value);
+                return new ObjectMarkerPatternNode(JsonUtil.toJsonString(value));
             case "#boolean":
                 return TypeMarkerPatternNode.BOOLEAN;
             case "#number":
@@ -86,8 +86,8 @@ public class JsonMatchPatternParser {
                 return UUIDMarkerPatternNode.getInstance();
         }
 
-        if (value.startsWith("#regex ")) {
-            return new RegexMarkerPatternNode(value, value.substring("#regex ".length()).trim());
+        if (value.startsWith("#regex")) {
+            return new RegexMarkerPatternNode(JsonUtil.toJsonString(value), value.substring("#regex".length()).trim());
         }
 
         Matcher arrayMatcher = ARRAY_PATTERN.matcher(value);
@@ -97,9 +97,9 @@ public class JsonMatchPatternParser {
             JsonPatternNode childPattern = remaining.isEmpty() ? null : parseMarkerOrNull(remaining);
 
             if (length.isEmpty()) {
-                return new ArrayMarkerPatternNode(value, childPattern);
+                return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value), childPattern);
             } else {
-                return new ArrayMarkerPatternNode(value, Integer.parseInt(length), childPattern);
+                return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value), Integer.parseInt(length), childPattern);
             }
         }
 

@@ -13,7 +13,7 @@ class NotNullMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#notnull}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#notnull"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test
@@ -22,7 +22,7 @@ class NotNullMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#notnull', reason: null")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#notnull", reason: null""")
     }
 
     @Test
