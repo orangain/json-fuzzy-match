@@ -3,6 +3,7 @@ package io.github.orangain.jsonmatch.pattern;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.orangain.jsonmatch.JsonMatchError;
 import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.JsonUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -30,11 +31,9 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         Set<String> additionalFieldNames = new HashSet<>(actualFieldNames);
         additionalFieldNames.removeAll(expectedFieldNames);
         if (!additionalFieldNames.isEmpty()) {
-            String reason = "actual value has " + additionalFieldNames.size()
-                    + " more key(s) than expected: {"
-                    + additionalFieldNames.stream().map(fieldName -> fieldName + "=" + actualNode.get(fieldName).toString()).collect(Collectors.joining(", "))
-                    + "}";
-
+            Map<String, Object> additionalMap = additionalFieldNames.stream().collect(Collectors.toMap(f -> f, actualNode::get));
+            String reason = "actual value has " + additionalFieldNames.size() + " more key(s) than expected: "
+                    + JsonUtil.toJsonString(additionalMap);
             return Optional.of(error(path, actualNode, reason));
         }
 

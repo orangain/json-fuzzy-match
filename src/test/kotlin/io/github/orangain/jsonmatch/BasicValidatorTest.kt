@@ -131,7 +131,7 @@ class BasicValidatorTest {
         """.trimIndent()
             )
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("reason: actual value has 1 more key(s) than expected: {null=null}")
+            .hasMessageContaining("""reason: actual value has 1 more key(s) than expected: {"null":null}""")
     }
 
     @Test
