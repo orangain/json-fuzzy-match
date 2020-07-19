@@ -51,24 +51,6 @@ crashlytics-build.properties
 fabric.properties
 
 
-### https://raw.github.com/github/gitignore/44cbb3686c18f634a488ea123d1148ca9a64fa22/Gradle.gitignore
-
-.gradle
-/build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
-
-
 ### https://raw.github.com/github/gitignore/44cbb3686c18f634a488ea123d1148ca9a64fa22/Java.gitignore
 
 # Compiled class file
@@ -93,6 +75,24 @@ gradle-app.setting
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+### https://raw.github.com/github/gitignore/44cbb3686c18f634a488ea123d1148ca9a64fa22/Gradle.gitignore
+
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
 
 
 ### Custom
