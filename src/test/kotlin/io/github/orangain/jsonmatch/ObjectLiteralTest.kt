@@ -48,6 +48,6 @@ class ObjectLiteralTest {
                 """{ "a": 1, "b": true, "d": "test" }"""
             )
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $, actual: {"a":1,"b":true,"c":null}, expected: {a=1, b=true, d=test}, reason: all key-values did not match, expected has un-matched keys: [d]""")
+            .hasMessageContaining("""path: $, actual: {"a":1,"b":true,"c":null}, expected: {"a":1,"b":true,"d":"test"}, reason: all key-values did not match, expected has un-matched keys: [d]""")
     }
 }

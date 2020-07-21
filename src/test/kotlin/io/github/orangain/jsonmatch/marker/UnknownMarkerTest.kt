@@ -13,7 +13,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#unknown}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#unknown"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test
@@ -22,7 +22,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -31,7 +31,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": true }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: true, expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: true, expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -40,7 +40,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 1, expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: 1, expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -55,7 +55,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: '', expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: "", expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -64,7 +64,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "unknown" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 'unknown', expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: "unknown", expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -73,7 +73,7 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [], expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -82,6 +82,6 @@ class UnknownMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: {}, expected: '#unknown', reason: not equal")
+            .hasMessageContaining("""path: $.a, actual: {}, expected: "#unknown", reason: not equal""")
     }
 }

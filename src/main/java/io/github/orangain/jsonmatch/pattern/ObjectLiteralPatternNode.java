@@ -27,6 +27,14 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         actualNode.fieldNames().forEachRemaining(actualFieldNames::add);
 
         Set<String> expectedFieldNames = expectedChildren.keySet();
+        
+        Set<String> missingFieldNames = new HashSet<>(expectedFieldNames);
+        missingFieldNames.removeAll(actualFieldNames);
+        missingFieldNames.removeIf(expectedFieldName -> expectedChildren.get(expectedFieldName).canBeMissing());
+        if (!missingFieldNames.isEmpty()) {
+            String reason = "all key-values did not match, expected has un-matched keys: [" + String.join(", ", missingFieldNames) + "]";
+            return Optional.of(error(path, actualNode, reason));
+        }
 
         Set<String> additionalFieldNames = new HashSet<>(actualFieldNames);
         additionalFieldNames.removeAll(expectedFieldNames);
@@ -34,14 +42,6 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
             Map<String, Object> additionalMap = additionalFieldNames.stream().collect(Collectors.toMap(f -> f, actualNode::get));
             String reason = "actual value has " + additionalFieldNames.size() + " more key(s) than expected: "
                     + JsonUtil.toJsonString(additionalMap);
-            return Optional.of(error(path, actualNode, reason));
-        }
-
-        Set<String> missingFieldNames = new HashSet<>(expectedFieldNames);
-        missingFieldNames.removeAll(actualFieldNames);
-        missingFieldNames.removeIf(expectedFieldName -> expectedChildren.get(expectedFieldName).canBeMissing());
-        if (!missingFieldNames.isEmpty()) {
-            String reason = "all key-values did not match, expected has un-matched keys: [" + String.join(", ", missingFieldNames) + "]";
             return Optional.of(error(path, actualNode, reason));
         }
 
