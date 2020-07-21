@@ -39,4 +39,15 @@ class ObjectLiteralTest {
         }.isInstanceOf(AssertionError::class.java)
             .hasMessageContaining("""path: ${'$'}, actual: {"a":1,"b":true,"c":null}, expected: {a=1}, reason: actual value has 2 more key(s) than expected: {b=true, c=null}""")
     }
+
+    @Test
+    fun doesNotMatchDifferentObject() {
+        Assertions.assertThatThrownBy {
+            // language=JSON
+            JsonStringAssert.assertThat(json).jsonMatches(
+                """{ "a": 1, "b": true, "d": "test" }"""
+            )
+        }.isInstanceOf(AssertionError::class.java)
+            .hasMessageContaining("""path: $, actual: {"a":1,"b":true,"c":null}, expected: {a=1, b=true, d=test}, reason: all key-values did not match, expected has un-matched keys: [d]""")
+    }
 }
