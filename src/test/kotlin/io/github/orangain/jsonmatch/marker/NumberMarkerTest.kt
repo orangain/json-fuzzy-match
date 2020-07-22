@@ -13,7 +13,7 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#number}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#number"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test
@@ -22,7 +22,7 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#number", reason: not a number""")
     }
 
     @Test
@@ -31,7 +31,7 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": true }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: true, expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a, actual: true, expected: "#number", reason: not a number""")
     }
 
     @Test
@@ -64,7 +64,7 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "1" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: '1', expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a, actual: "1", expected: "#number", reason: not a number""")
     }
 
     @Test
@@ -73,7 +73,7 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [], expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#number", reason: not a number""")
     }
 
     @Test
@@ -82,6 +82,6 @@ class NumberMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: {}, expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a, actual: {}, expected: "#number", reason: not a number""")
     }
 }

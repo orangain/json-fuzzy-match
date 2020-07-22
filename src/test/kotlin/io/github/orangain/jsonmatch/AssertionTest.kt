@@ -10,21 +10,21 @@ class AssertionTest {
     @Test
     fun testAssertJsonMatches() {
         assertThatCode {
-            JsonMatch.assertJsonMatches("""{"foo": "bar"}""", "{ foo: '#notnull' }")
+            JsonMatch.assertJsonMatches("""{"foo": "bar"}""", """{ "foo": "#notnull" }""")
         }.doesNotThrowAnyException()
     }
 
     @Test
     fun testAssertJsonNotMatches() {
         assertThatThrownBy {
-            JsonMatch.assertJsonMatches("""{"foo": "bar"}""", "{ foo: '#null' }")
+            JsonMatch.assertJsonMatches("""{"foo": "bar"}""", """{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
             "\n" + """
             Expecting:
              {"foo": "bar"}
             to match pattern:
-             { foo: '#null' }
-            path: ${'$'}.foo, actual: 'bar', expected: '#null', reason: not-null
+             { "foo": "#null" }
+            path: $.foo, actual: "bar", expected: "#null", reason: not-null
         """.trimIndent()
         )
     }
@@ -32,21 +32,21 @@ class AssertionTest {
     @Test
     fun testJsonMatches() {
         assertThatCode {
-            JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("{ foo: '#notnull' }")
+            JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("""{ "foo": "#notnull" }""")
         }.doesNotThrowAnyException()
     }
 
     @Test
     fun testJsonNotMatches() {
         assertThatThrownBy {
-            JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("{ foo: '#null' }")
+            JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("""{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
             "\n" + """
             Expecting:
              {"foo": "bar"}
             to match pattern:
-             { foo: '#null' }
-            path: ${'$'}.foo, actual: 'bar', expected: '#null', reason: not-null
+             { "foo": "#null" }
+            path: $.foo, actual: "bar", expected: "#null", reason: not-null
         """.trimIndent()
         )
     }

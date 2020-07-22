@@ -4,8 +4,8 @@ import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
 import org.junit.Test
 
-class StringMarkerTest {
-    private val patternJson = """{ "a": "#string" }"""
+class UnknownMarkerTest {
+    private val patternJson = """{ "a": "#unknown" }"""
 
     @Test
     fun doesNotMatchMissingField() {
@@ -13,7 +13,7 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#string"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#unknown"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test
@@ -22,7 +22,7 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $.a, actual: null, expected: "#string", reason: not a string""")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -31,7 +31,7 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": true }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $.a, actual: true, expected: "#string", reason: not a string""")
+            .hasMessageContaining("""path: $.a, actual: true, expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -40,25 +40,31 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $.a, actual: 1, expected: "#string", reason: not a string""")
+            .hasMessageContaining("""path: $.a, actual: 1, expected: "#unknown", reason: not equal""")
     }
 
     @Test
-    fun matchString() {
+    fun matchSameString() {
         // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "1" }""").jsonMatches(patternJson)
+        JsonStringAssert.assertThat("""{ "a": "#unknown" }""").jsonMatches(patternJson)
     }
 
     @Test
-    fun matchEmptyString() {
-        // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "" }""").jsonMatches(patternJson)
+    fun doesNotMatchEmptyString() {
+        Assertions.assertThatThrownBy {
+            // language=JSON
+            JsonStringAssert.assertThat("""{ "a": "" }""").jsonMatches(patternJson)
+        }.isInstanceOf(AssertionError::class.java)
+            .hasMessageContaining("""path: $.a, actual: "", expected: "#unknown", reason: not equal""")
     }
 
     @Test
-    fun matchBase64EncodedString() {
-        // language=JSON
-        JsonStringAssert.assertThat("""{ "a": "hc3VyZS4=" }""").jsonMatches(patternJson)
+    fun doesNotMatchDifferentString() {
+        Assertions.assertThatThrownBy {
+            // language=JSON
+            JsonStringAssert.assertThat("""{ "a": "unknown" }""").jsonMatches(patternJson)
+        }.isInstanceOf(AssertionError::class.java)
+            .hasMessageContaining("""path: $.a, actual: "unknown", expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -67,7 +73,7 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $.a, actual: [], expected: "#string", reason: not a string""")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#unknown", reason: not equal""")
     }
 
     @Test
@@ -76,6 +82,6 @@ class StringMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: $.a, actual: {}, expected: "#string", reason: not a string""")
+            .hasMessageContaining("""path: $.a, actual: {}, expected: "#unknown", reason: not equal""")
     }
 }

@@ -13,7 +13,7 @@ class PresentMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("{}").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$, actual: {}, expected: {a=#present}, reason: all key-values did not match, expected has un-matched keys: [a]")
+            .hasMessageContaining("""path: $, actual: {}, expected: {"a":"#present"}, reason: all key-values did not match, expected has un-matched keys: [a]""")
     }
 
     @Test

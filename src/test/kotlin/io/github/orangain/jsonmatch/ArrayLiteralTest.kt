@@ -43,7 +43,7 @@ class ArrayLiteralTest {
             """.trimIndent()
             )
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: ${'$'}, actual: [{"id":1},{"id":2},{"id":3}], expected: [{"id":1},{"id":2},{"id":3},{"id":4}], reason: actual and expected arrays are not the same size - 3:4""")
+            .hasMessageContaining("""path: $, actual: [{"id":1},{"id":2},{"id":3}], expected: [{"id":1},{"id":2},{"id":3},{"id":4}], reason: actual and expected arrays are not the same size - 3:4""")
     }
 
     @Test
@@ -59,6 +59,6 @@ class ArrayLiteralTest {
             """.trimIndent()
             )
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("""path: ${'$'}, actual: [{"id":1},{"id":2},{"id":3}], expected: [{"id":1},{"id":2}], reason: actual and expected arrays are not the same size - 3:2""")
+            .hasMessageContaining("""path: $, actual: [{"id":1},{"id":2},{"id":3}], expected: [{"id":1},{"id":2}], reason: actual and expected arrays are not the same size - 3:2""")
     }
 }

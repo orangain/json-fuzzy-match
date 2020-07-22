@@ -2,7 +2,6 @@ package io.github.orangain.jsonmatch.marker
 
 import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
-import org.junit.Ignore
 import org.junit.Test
 import java.util.*
 
@@ -36,7 +35,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$.a, actual: '', expected: '#uuid', reason: not a valid #uuid")
+            .hasMessageContaining("""path: $.a, actual: "", expected: "#uuid", reason: not a valid #uuid""")
     }
 
     @Test
@@ -45,7 +44,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "abc" }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$.a, actual: 'abc', expected: '#uuid', reason: not a valid #uuid")
+            .hasMessageContaining("""path: $.a, actual: "abc", expected: "#uuid", reason: not a valid #uuid""")
     }
 
     @Test
@@ -55,18 +54,17 @@ class UUIDMarkerTest {
             JsonStringAssert.assertThat("""{ "a": "2c0a9fd7be2c4bc2b134acc3fa13d400" }""")
                 .jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$.a, actual: '2c0a9fd7be2c4bc2b134acc3fa13d400', expected: '#uuid', reason: not a valid #uuid")
+            .hasMessageContaining("""path: $.a, actual: "2c0a9fd7be2c4bc2b134acc3fa13d400", expected: "#uuid", reason: not a valid #uuid""")
     }
 
     @Test
-    @Ignore("UUID.fromString() accepts shorter string. See https://bugs.openjdk.java.net/browse/JDK-8202760")
     fun doesNotMatchShorterString() {
         Assertions.assertThatThrownBy {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": "2c0a9fd7-be2c-4bc2-b134-acc3fa13d40" }""")
                 .jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$.a, actual: '2c0a9fd7-be2c-4bc2-b134-acc3fa13d40', expected: '#uuid', reason: not a valid #uuid")
+            .hasMessageContaining("""path: $.a, actual: "2c0a9fd7-be2c-4bc2-b134-acc3fa13d40", expected: "#uuid", reason: not a valid #uuid""")
     }
 
     @Test
@@ -76,7 +74,7 @@ class UUIDMarkerTest {
             JsonStringAssert.assertThat("""{ "a": "{2c0a9fd7-be2c-4bc2-b134-acc3fa13d400}" }""")
                 .jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: \$.a, actual: '{2c0a9fd7-be2c-4bc2-b134-acc3fa13d400}', expected: '#uuid', reason: not a valid #uuid")
+            .hasMessageContaining("""path: $.a, actual: "{2c0a9fd7-be2c-4bc2-b134-acc3fa13d400}", expected: "#uuid", reason: not a valid #uuid""")
     }
 
     @Test
@@ -85,7 +83,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": null }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: null, expected: '#uuid', reason: not a string")
+            .hasMessageContaining("""path: $.a, actual: null, expected: "#uuid", reason: not a string""")
     }
 
     @Test
@@ -94,7 +92,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": true }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: true, expected: '#uuid', reason: not a string")
+            .hasMessageContaining("""path: $.a, actual: true, expected: "#uuid", reason: not a string""")
     }
 
     @Test
@@ -103,7 +101,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": 1 }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: 1, expected: '#uuid', reason: not a string")
+            .hasMessageContaining("""path: $.a, actual: 1, expected: "#uuid", reason: not a string""")
     }
 
     @Test
@@ -112,7 +110,7 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: [], expected: '#uuid', reason: not a string")
+            .hasMessageContaining("""path: $.a, actual: [], expected: "#uuid", reason: not a string""")
     }
 
     @Test
@@ -121,6 +119,6 @@ class UUIDMarkerTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": {} }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $.a, actual: {}, expected: '#uuid', reason: not a string")
+            .hasMessageContaining("""path: $.a, actual: {}, expected: "#uuid", reason: not a string""")
     }
 }

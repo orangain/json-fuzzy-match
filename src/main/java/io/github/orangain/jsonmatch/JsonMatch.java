@@ -1,16 +1,14 @@
 package io.github.orangain.jsonmatch;
 
-import com.intuit.karate.*;
-import com.intuit.karate.core.FeatureContext;
-import com.intuit.karate.core.MatchType;
-import com.intuit.karate.core.ScenarioContext;
-import com.jayway.jsonpath.DocumentContext;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.orangain.jsonmatch.pattern.JsonPatternNode;
 
 import java.util.Optional;
 
 
 public class JsonMatch {
-
     public static void assertJsonMatches(String actualJson, String patternJson) {
         Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
         if (errorMessage.isPresent()) {
@@ -19,18 +17,23 @@ public class JsonMatch {
     }
 
     public static Optional<String> jsonMatches(String actualJson, String patternJson) {
-        ScenarioContext ctx = getContext();
-        DocumentContext doc = JsonUtils.toJsonDocStrict(actualJson);
-        ScriptValue actual = new ScriptValue(doc);
+        ObjectMapper mapper = JsonUtil.getObjectMapper();
+        JsonNode actualTree;
+        JsonNode patternTree;
 
-        AssertionResult result = Script.matchJsonOrObject(MatchType.EQUALS, actual, "$", patternJson, ctx);
+        try {
+            actualTree = mapper.readTree(actualJson);
+        } catch (JsonProcessingException e) {
+            return Optional.of("Failed to parse actualJson");
+        }
+        try {
+            patternTree = mapper.readTree(patternJson);
+        } catch (JsonProcessingException e) {
+            return Optional.of("Failed to parse patternJson");
+        }
 
-        return result.pass ? Optional.empty() : Optional.of(result.message);
-    }
-
-    private static ScenarioContext getContext() {
-        FeatureContext featureContext = FeatureContext.forEnv();
-        CallContext callContext = new CallContext(null, null, 0, null, -1, null, false, false, "com.intuit.karate.http.DummyHttpClient", null, null, false);
-        return new ScenarioContext(featureContext, callContext, null, null);
+        JsonPatternNode rootPattern = JsonMatchPatternParser.parse(patternTree);
+        Optional<JsonMatchError> error = rootPattern.matches(JsonPath.ROOT, actualTree);
+        return error.map(JsonMatchError::toString);
     }
 }

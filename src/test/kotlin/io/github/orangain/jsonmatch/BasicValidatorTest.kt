@@ -31,9 +31,10 @@ class BasicValidatorTest {
     }
 
     @Test
-    fun matchWhenNoValidatorIsUsedInSmartJson() {
-        JsonStringAssert.assertThat(basicJson).jsonMatches(
-            """
+    fun smartJsonIsNoLongerSupported() {
+        Assertions.assertThatThrownBy {
+            JsonStringAssert.assertThat(basicJson).jsonMatches(
+                """
             {
                 string: 'foo',
                 number: 42,
@@ -41,7 +42,9 @@ class BasicValidatorTest {
                 null: null,
             }
         """.trimIndent()
-        )
+            )
+        }.isInstanceOf(AssertionError::class.java)
+            .hasMessageContaining("Failed to parse patternJson")
     }
 
     @Test
@@ -128,7 +131,7 @@ class BasicValidatorTest {
         """.trimIndent()
             )
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("reason: actual value has 1 more key(s) than expected: {null=null}")
+            .hasMessageContaining("""reason: actual value has 1 more key(s) than expected: {"null":null}""")
     }
 
     @Test

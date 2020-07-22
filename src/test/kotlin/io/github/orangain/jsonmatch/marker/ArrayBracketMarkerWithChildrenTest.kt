@@ -25,7 +25,7 @@ class ArrayBracketMarkerWithChildrenTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [1, null] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $[1], actual: null, expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a[1], actual: null, expected: "#number", reason: not a number""")
     }
 
     @Test
@@ -34,6 +34,6 @@ class ArrayBracketMarkerWithChildrenTest {
             // language=JSON
             JsonStringAssert.assertThat("""{ "a": [1, 2, "3"] }""").jsonMatches(patternJson)
         }.isInstanceOf(AssertionError::class.java)
-            .hasMessageContaining("path: $[2], actual: '3', expected: '#number', reason: not a number")
+            .hasMessageContaining("""path: $.a[2], actual: "3", expected: "#number", reason: not a number""")
     }
 }
