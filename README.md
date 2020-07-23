@@ -1,4 +1,4 @@
-# json-fuzzy-match [![](https://img.shields.io/bintray/v/orangain/maven/json-fuzzy-match)](https://bintray.com/orangain/maven/json-fuzzy-match)
+# json-fuzzy-match [![](https://img.shields.io/bintray/v/orangain/maven/json-fuzzy-match)](https://bintray.com/orangain/maven/json-fuzzy-match) ![Java CI](https://github.com/orangain/json-fuzzy-match/workflows/Java%20CI/badge.svg)
 
 json-fuzzy-match provides assertion to check whether a JSON string fuzzily matches a pattern for JVM languages.
 This is useful when you test JSON response including dynamic or generated value. 
