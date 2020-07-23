@@ -123,27 +123,16 @@ Marker | Description
 
 ### Examples
 
-* Ignore marker
-    * `{ "a": null }` matches `{ "a": "#ignore" }`
-    * `{}` matches `{ "a": "#ignore" }`
-* Null marker
-    * `{ "a": null }` matches `{ "a": "#null" }`
-    * `{ "a": "abc" }` does not match `{ "a": "#null" }`
-    * `{}` does not match `{ "a": "#null" }`
-* Not-null marker
-    * `{ "a": null }` does not match `{ "a": "#notnull" }`
-    * `{ "a": "abc" }` matches `{ "a": "#notnull" }`
-    * `{}` does not match `{ "a": "#notnull" }`
-* Present marker
-    * `{ "a": null }` matches `{ "a": "#present" }`
-    * `{ "a": "abc" }` matches `{ "a": "#present" }`
-    * `{}` does not match `{ "a": "#present" }`
-* Not-present marker
-    * `{ "a": null }` does not match `{ "a": "#notpresent" }`
-    * `{ "a": "abc" }` does not match `{ "a": "#notpresent" }`
-    * `{}` matches `{ "a": "#notpresent" }`
+Pattern                  | `{}`                     | `{ "a": null }`          | `{ "a": "abc" }`
+------------------------ | ------------------------ | ------------------------ | -------------------------
+`{ "a": "#ignore" }`     | :white_check_mark: match | :white_check_mark: match | :white_check_mark: match
+`{ "a": "#null" }`       | :x: not match            | :white_check_mark: match | :x: not match
+`{ "a": "#notnull" }`    | :x: not match            | :x: not match            | :white_check_mark: match
+`{ "a": "#present" }`    | :x: not match            | :white_check_mark: match | :white_check_mark: match
+`{ "a": "#notpresent" }` | :white_check_mark: match | :x: not match            | :x: not match
+
 * Regex marker
-    * `{ "id": "#regex [a-z]+" }` matches `{ "id": "abc" }`
+    * `{ "id": "abc" }` matches `{ "id": "#regex [a-z]+" }` 
 * Advanced array marker
     * `{ "tags": ["awesome", "shop"] }` matches `{ "tags": "#[2]" }`
     * `{ "tags": ["awesome", "shop"] }` matches `{ "tags": "#[] #string" }`
