@@ -131,12 +131,16 @@ Pattern                  | `{}`                     | `{ "a": null }`          |
 `{ "a": "#present" }`    | :x: not match            | :white_check_mark: match | :white_check_mark: match
 `{ "a": "#notpresent" }` | :white_check_mark: match | :x: not match            | :x: not match
 
-* Regex marker
-    * `{ "id": "abc" }` matches `{ "id": "#regex [a-z]+" }` 
-* Advanced array marker
-    * `{ "tags": ["awesome", "shop"] }` matches `{ "tags": "#[2]" }`
-    * `{ "tags": ["awesome", "shop"] }` matches `{ "tags": "#[] #string" }`
-    * `{ "tags": ["awesome", "shop"] }` matches `{ "tags": "#[2] #string" }`
+#### Regex marker
+
+* `{ "id": "abc" }` matches `{ "id": "#regex [a-z]+" }` 
+
+#### Advanced array marker
+* `{ "tags": ["awesome", "shop"] }` matches the following patterns:
+  * `{ "tags": "#[]" }`
+  * `{ "tags": "#[2]" }`
+  * `{ "tags": "#[] #string" }`
+  * `{ "tags": "#[2] #string" }`
 
 ## Development
 
