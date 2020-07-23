@@ -39,7 +39,7 @@ JsonStringAssert.assertThat(response.content).jsonMatches("""
       "price": "9.99",
       "currency": "USD",
       "amount": 10,
-      "timestamp": "#string"
+      "timestamp": "#datetime"
     }
 """.trimIndent())
 ```
@@ -118,6 +118,8 @@ Marker | Description
 `#number` | Expects actual value to be a number
 `#string` | Expects actual value to be a string
 `#uuid` | Expects actual (string) value to conform to the UUID format
+`#date` | Expects actual (string) value to conform to the local date in the ISO 8601 extended format
+`#datetime` | Expects actual (string) value to conform to the datetime with timezone in the ISO 8601 extended format
 `#regex STR` | Expects actual (string) value to match the regular-expression 'STR' (see examples below)
 `#[NUM] EXPR` | Advanced array marker. When NUM is provided, array must has length just NUM. When EXPR is provided, array's element must match the pattern 'EXPR' (see examples below)
 
@@ -131,9 +133,21 @@ Pattern                  | `{}`                     | `{ "a": null }`          |
 `{ "a": "#present" }`    | :x: not match            | :white_check_mark: match | :white_check_mark: match
 `{ "a": "#notpresent" }` | :white_check_mark: match | :x: not match            | :x: not match
 
+#### Date marker
+
+* `{ "createdOn": "2020-07-23" }` matches the pattern `{ "createdOn": "#date" }` 
+* `{ "createdOn": "2020/07/23" }` does not match the pattern `{ "createdOn": "#date" }` 
+
+#### Datetime marker
+
+* `{ "createdAt": "2020-07-23T14:56:11+09:00" }` matches the pattern `{ "createdAt": "#datetime" }` 
+* `{ "createdAt": "2020-07-23T05:56:11Z" }` matches the pattern `{ "createdAt": "#datetime" }` 
+* `{ "createdAt": "2020-07-23T05:56:11" }` does not match the pattern `{ "createdAt": "#datetime" }` 
+
 #### Regex marker
 
-* `{ "id": "abc" }` matches `{ "id": "#regex [a-z]+" }` 
+* `{ "id": "abc" }` matches the pattern `{ "id": "#regex [a-z]+" }` 
+* `{ "id": "123" }` does not match the pattern `{ "id": "#regex [a-z]+" }` 
 
 #### Advanced array marker
 * `{ "tags": ["awesome", "shop"] }` matches the following patterns:

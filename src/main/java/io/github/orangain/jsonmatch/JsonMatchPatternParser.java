@@ -84,6 +84,10 @@ public class JsonMatchPatternParser {
                 return TypeMarkerPatternNode.STRING;
             case "#uuid":
                 return UUIDMarkerPatternNode.getInstance();
+            case "#date":
+                return DateMarkerPatternNode.getInstance();
+            case "#datetime":
+                return DateTimeMarkerPatternNode.getInstance();
         }
 
         if (value.startsWith("#regex")) {
