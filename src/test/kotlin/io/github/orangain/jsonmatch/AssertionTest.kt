@@ -19,13 +19,14 @@ class AssertionTest {
         assertThatThrownBy {
             JsonMatch.assertJsonMatches("""{"foo": "bar"}""", """{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
-            "\n" + """
-            Expecting:
-             {"foo": "bar"}
-            to match pattern:
-             { "foo": "#null" }
-            path: $.foo, actual: "bar", expected: "#null", reason: not-null
-        """.trimIndent()
+            """
+                path: $.foo, actual: "bar", expected: "#null", reason: not-null
+                expected:<{
+                  "foo" : "#null"
+                }> but was:<{
+                  "foo" : "bar"
+                }>
+            """.trimIndent()
         )
     }
 
@@ -41,13 +42,14 @@ class AssertionTest {
         assertThatThrownBy {
             JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("""{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
-            "\n" + """
-            Expecting:
-             {"foo": "bar"}
-            to match pattern:
-             { "foo": "#null" }
-            path: $.foo, actual: "bar", expected: "#null", reason: not-null
-        """.trimIndent()
+            """
+                path: $.foo, actual: "bar", expected: "#null", reason: not-null
+                expected:<{
+                  "foo" : "#null"
+                }> but was:<{
+                  "foo" : "bar"
+                }>
+            """.trimIndent()
         )
     }
 }
