@@ -11,9 +11,9 @@ import java.util.Optional;
 public class JsonMatch {
     public static void assertJsonMatches(String actualJson, String patternJson) {
         Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
-        if (errorMessage.isPresent()) {
-            throw new AssertionError(errorMessage.get());
-        }
+        errorMessage.ifPresent(m -> {
+            throw new AssertionError(m);
+        });
     }
 
     public static Optional<String> jsonMatches(String actualJson, String patternJson) {
