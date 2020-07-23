@@ -19,7 +19,7 @@ public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
         isNotNull();
 
         Optional<String> errorMessage = JsonMatch.jsonMatches(actual, patternJson);
-        errorMessage.ifPresent(m -> failWithMessage("%nExpecting:%n %s%nto match pattern:%n %s%n%s", actual, patternJson, m));
+        errorMessage.ifPresent(m -> failWithMessage(m));
 
         return this;
     }

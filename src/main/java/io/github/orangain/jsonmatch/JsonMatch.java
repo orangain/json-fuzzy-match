@@ -11,9 +11,9 @@ import java.util.Optional;
 public class JsonMatch {
     public static void assertJsonMatches(String actualJson, String patternJson) {
         Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
-        if (errorMessage.isPresent()) {
-            throw new AssertionError(String.format("%nExpecting:%n %s%nto match pattern:%n %s%n%s", actualJson, patternJson, errorMessage.get()));
-        }
+        errorMessage.ifPresent(m -> {
+            throw new AssertionError(m);
+        });
     }
 
     public static Optional<String> jsonMatches(String actualJson, String patternJson) {
@@ -34,6 +34,6 @@ public class JsonMatch {
 
         JsonPatternNode rootPattern = JsonMatchPatternParser.parse(patternTree);
         Optional<JsonMatchError> error = rootPattern.matches(JsonPath.ROOT, actualTree);
-        return error.map(JsonMatchError::toString);
+        return error.map(errorMessage -> String.format("%s%nexpected:<%s> but was:<%s>", errorMessage, patternTree.toPrettyString(), actualTree.toPrettyString()));
     }
 }
