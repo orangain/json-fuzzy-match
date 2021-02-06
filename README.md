@@ -1,7 +1,7 @@
-# json-fuzzy-match [![](https://img.shields.io/bintray/v/orangain/maven/json-fuzzy-match)](https://bintray.com/orangain/maven/json-fuzzy-match) [![Java CI](https://github.com/orangain/json-fuzzy-match/workflows/Java%20CI/badge.svg)](https://github.com/orangain/json-fuzzy-match/actions?query=workflow%3A%22Java+CI%22)
+# json-fuzzy-match [![JitPack](https://jitpack.io/v/orangain/json-fuzzy-match.svg)](https://jitpack.io/#orangain/json-fuzzy-match) [![Java CI](https://github.com/orangain/json-fuzzy-match/workflows/Java%20CI/badge.svg)](https://github.com/orangain/json-fuzzy-match/actions?query=workflow%3A%22Java+CI%22)
 
 json-fuzzy-match provides assertion to check whether a JSON string fuzzily matches a pattern for JVM languages.
-This is useful when you test JSON response including dynamic or generated value. 
+This is useful when you test JSON response including dynamic or generated value.
 
 For example, think about testing the following JSON response.
 
@@ -44,23 +44,22 @@ JsonStringAssert.assertThat(response.content).jsonMatches("""
 """.trimIndent())
 ```
 
-It is recommended to use json-fuzzy-match with languages which have multi-line string literal such as Kotlin, Scala and Groovy.
+It is recommended to use json-fuzzy-match with languages which have multi-line string literal such as Kotlin, Scala, Java 13+ and Groovy.
 Sample codes in this README are written in Kotlin.
-
 
 ## Install
 
-json-fuzzy-match is available on [jCenter](https://bintray.com/orangain/maven/json-fuzzy-match). 
+json-fuzzy-match is available on [JitPack](https://jitpack.io/#orangain/json-fuzzy-match).
 
-### Gradle (both Kotlin and Groovy DSL)
+### Gradle Kotlin DSL
 
 ```kts
 repositories {
-  jcenter()
+  maven { setUrl("https://jitpack.io") }
 }
 
 dependencies {
-  testImplementation("io.github.orangain.json-fuzzy-match:json-fuzzy-match:0.4.0")
+  testImplementation("com.github.orangain:json-fuzzy-match:0.4.1")
 }
 ```
 
@@ -69,16 +68,16 @@ dependencies {
 ```xml
 <repositories>
   <repository>
-    <id>jcenter</id>
-    <url>https://jcenter.bintray.com/</url>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
   </repository>
 </repositories>
 
 <dependencies>
   <dependency>
-    <groupId>io.github.orangain.json-fuzzy-match</groupId>
+    <groupId>com.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
   </dependency>
 </dependencies>
 ```
@@ -135,19 +134,19 @@ Pattern                  | `{}`                     | `{ "a": null }`          |
 
 #### Date marker
 
-* `{ "createdOn": "2020-07-23" }` matches the pattern `{ "createdOn": "#date" }` 
-* `{ "createdOn": "2020/07/23" }` does not match the pattern `{ "createdOn": "#date" }` 
+* `{ "createdOn": "2020-07-23" }` matches the pattern `{ "createdOn": "#date" }`
+* `{ "createdOn": "2020/07/23" }` does not match the pattern `{ "createdOn": "#date" }`
 
 #### Datetime marker
 
-* `{ "createdAt": "2020-07-23T14:56:11+09:00" }` matches the pattern `{ "createdAt": "#datetime" }` 
-* `{ "createdAt": "2020-07-23T05:56:11Z" }` matches the pattern `{ "createdAt": "#datetime" }` 
-* `{ "createdAt": "2020-07-23T05:56:11" }` does not match the pattern `{ "createdAt": "#datetime" }` 
+* `{ "createdAt": "2020-07-23T14:56:11+09:00" }` matches the pattern `{ "createdAt": "#datetime" }`
+* `{ "createdAt": "2020-07-23T05:56:11Z" }` matches the pattern `{ "createdAt": "#datetime" }`
+* `{ "createdAt": "2020-07-23T05:56:11" }` does not match the pattern `{ "createdAt": "#datetime" }`
 
 #### Regex marker
 
-* `{ "id": "abc" }` matches the pattern `{ "id": "#regex [a-z]+" }` 
-* `{ "id": "123" }` does not match the pattern `{ "id": "#regex [a-z]+" }` 
+* `{ "id": "abc" }` matches the pattern `{ "id": "#regex [a-z]+" }`
+* `{ "id": "123" }` does not match the pattern `{ "id": "#regex [a-z]+" }`
 
 #### Advanced array marker
 * `{ "tags": ["awesome", "shop"] }` matches the following patterns:
@@ -156,24 +155,13 @@ Pattern                  | `{}`                     | `{ "a": null }`          |
   * `{ "tags": "#[] #string" }`
   * `{ "tags": "#[2] #string" }`
 
-## Development
-
-Release an artifact to Bintray. Then publish it from [Web console](https://bintray.com/orangain/maven/json-fuzzy-match).
-
-```
-./gradlew bintrayUpload
-```
-
 ## License
 
 MIT License. See `LICENSE`.
 
-## Acknowledgement 
+## Acknowledgement
 
 I'm very grateful for the [Karate](https://intuit.github.io/karate/) and its authors.
 The idea of the marker is heavily inspired by the Karate's wonderful fuzzy matching feature.
 Though json-fuzzy-match does not depend on Karate now, the first version of this library only provided a thin wrapper of Karate's feature.
 Without it, I was not able to develop this library so quickly.
-
-
-
