@@ -38,3 +38,38 @@ val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
     from(tasks.javadoc)
 }
+
+publishing {
+    publications {
+        register<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(sourcesJar.get())
+            artifact(javadocJar.get())
+            groupId = project.group as String
+            artifactId = project.name
+            version = project.version as String
+            pom {
+                name.set(project.name)
+                description.set("Custom assertion to check JSON string matches pattern.")
+                url.set("https://github.com/orangain/json-fuzzy-match")
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://github.com/orangain/json-fuzzy-match/blob/master/LICENSE")
+                        distribution.set("repo")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("orangain")
+                        name.set("Kota Kato")
+                        email.set("orangain@gmail.com")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/orangain/json-fuzzy-match")
+                }
+            }
+        }
+    }
+}
