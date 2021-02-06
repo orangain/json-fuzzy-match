@@ -6,8 +6,8 @@ plugins {
     kotlin("jvm") version "1.3.50"
 }
 
-group = "io.github.orangain.json-fuzzy-match"
-version = "0.4.0"
+group = "com.github.orangain"
+version = "0.4.1"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ dependencies {
     implementation("org.assertj:assertj-core:3.11.1")
     implementation("org.jetbrains:annotations:13.0")
     testImplementation(kotlin("stdlib-jdk8"))
-    testImplementation("junit", "junit", "4.12")
+    testImplementation("junit:junit:4.12")
     testImplementation("org.assertj:assertj-core:3.11.1")
 }
 
