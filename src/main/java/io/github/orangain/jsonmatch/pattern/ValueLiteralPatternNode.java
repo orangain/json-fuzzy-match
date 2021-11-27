@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +17,7 @@ public class ValueLiteralPatternNode extends ValuePatternNode {
 
     @NotNull
     @Override
-    public Optional<JsonMatchError> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (!expectedJsonNode.equals(actualNode)) {
             return Optional.of(error(path, actualNode, "not equal"));
         }

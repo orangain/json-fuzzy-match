@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,11 +15,11 @@ public abstract class JsonPatternNode {
     }
 
     @NotNull
-    public abstract Optional<JsonMatchError> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode);
+    public abstract Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode);
 
     @NotNull
-    protected JsonMatchError error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
-        return new JsonMatchError(path, actualNode.toString(), expected, reason);
+    protected JsonMatchErrorDetail error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
+        return new JsonMatchErrorDetail(path, actualNode.toString(), expected, reason);
     }
 
     protected boolean canBeMissing() {

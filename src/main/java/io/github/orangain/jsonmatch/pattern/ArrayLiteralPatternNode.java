@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +18,7 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
 
     @NotNull
     @Override
-    protected Optional<JsonMatchError> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedChildren.size() != actualNode.size()) {
             return Optional.of(error(jsonPath, actualNode, "actual and expected arrays are not the same size - " + actualNode.size() + ":" + expectedChildren.size()));
         }
@@ -27,9 +27,9 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
 
     @NotNull
     @Override
-    protected Optional<JsonMatchError> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         for (int i = 0; i < expectedChildren.size(); i++) {
-            Optional<JsonMatchError> error = expectedChildren.get(i).matches(jsonPath.arrayItem(i), actualNode.get(i));
+            Optional<JsonMatchErrorDetail> error = expectedChildren.get(i).matches(jsonPath.arrayItem(i), actualNode.get(i));
             if (error.isPresent()) {
                 return error;
             }

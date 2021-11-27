@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `java-library`
     `maven-publish`
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.6.0"
 }
 
 group = "com.github.orangain"
@@ -14,12 +14,12 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.11.1")
-    implementation("org.assertj:assertj-core:3.11.1")
-    implementation("org.jetbrains:annotations:13.0")
-    testImplementation(kotlin("stdlib-jdk8"))
-    testImplementation("junit:junit:4.12")
-    testImplementation("org.assertj:assertj-core:3.11.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
+    implementation("org.assertj:assertj-core:3.21.0")
+    implementation("org.jetbrains:annotations:22.0.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.assertj:assertj-core:3.21.0")
 }
 
 configure<JavaPluginConvention> {

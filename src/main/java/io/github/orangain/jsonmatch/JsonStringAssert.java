@@ -2,8 +2,6 @@ package io.github.orangain.jsonmatch;
 
 import org.assertj.core.api.AbstractAssert;
 
-import java.util.Optional;
-
 
 public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
 
@@ -18,8 +16,8 @@ public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
     public JsonStringAssert jsonMatches(String patternJson) {
         isNotNull();
 
-        Optional<String> errorMessage = JsonMatch.jsonMatches(actual, patternJson);
-        errorMessage.ifPresent(m -> failWithMessage(m));
+        JsonMatch.jsonMatches(actual, patternJson)
+                .ifPresent(error -> failWithActualExpectedAndMessage(error.getActual(), error.getExpected(), error.getMessage()));
 
         return this;
     }

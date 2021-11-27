@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import io.github.orangain.jsonmatch.JsonUtil;
 import org.jetbrains.annotations.NotNull;
@@ -22,12 +22,12 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
 
     @NotNull
     @Override
-    public Optional<JsonMatchError> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         Set<String> actualFieldNames = new HashSet<>();
         actualNode.fieldNames().forEachRemaining(actualFieldNames::add);
 
         Set<String> expectedFieldNames = expectedChildren.keySet();
-        
+
         Set<String> missingFieldNames = new HashSet<>(expectedFieldNames);
         missingFieldNames.removeAll(actualFieldNames);
         missingFieldNames.removeIf(expectedFieldName -> expectedChildren.get(expectedFieldName).canBeMissing());
@@ -46,7 +46,7 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         }
 
         for (String expectedFieldName : expectedFieldNames) {
-            Optional<JsonMatchError> error = expectedChildren.get(expectedFieldName).matches(
+            Optional<JsonMatchErrorDetail> error = expectedChildren.get(expectedFieldName).matches(
                     path.objectField(expectedFieldName),
                     actualNode.path(expectedFieldName)// .path() can return missing node
             );

@@ -2,7 +2,7 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import io.github.orangain.jsonmatch.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
@@ -27,7 +27,7 @@ public class TypeMarkerPatternNode extends ValuePatternNode {
 
     @NotNull
     @Override
-    public Optional<JsonMatchError> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (actualNode.getNodeType() != expectedNodeType) {
             return Optional.of(error(path, actualNode, reasonOnError));
         }

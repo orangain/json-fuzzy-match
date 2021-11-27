@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +28,7 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
 
     @NotNull
     @Override
-    protected Optional<JsonMatchError> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedSize >= 0 && expectedSize != actualNode.size()) {
             return Optional.of(error(jsonPath, actualNode, "actual array length was: " + actualNode.size()));
         }
@@ -38,11 +38,11 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
 
     @NotNull
     @Override
-    protected Optional<JsonMatchError> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedChildPattern == null) return Optional.empty();
 
         for (int i = 0; i < actualNode.size(); i++) {
-            Optional<JsonMatchError> error = expectedChildPattern.matches(jsonPath.arrayItem(i), actualNode.get(i));
+            Optional<JsonMatchErrorDetail> error = expectedChildPattern.matches(jsonPath.arrayItem(i), actualNode.get(i));
             if (error.isPresent()) {
                 return error;
             }
