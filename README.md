@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation("com.github.orangain:json-fuzzy-match:0.4.1")
+  testImplementation("com.github.orangain:json-fuzzy-match:0.5.0")
 }
 ```
 
@@ -77,7 +77,7 @@ dependencies {
   <dependency>
     <groupId>com.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.4.1</version>
+    <version>0.5.0</version>
   </dependency>
 </dependencies>
 ```
