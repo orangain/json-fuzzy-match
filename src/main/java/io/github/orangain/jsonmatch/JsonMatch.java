@@ -10,13 +10,13 @@ import java.util.Optional;
 
 public class JsonMatch {
     public static void assertJsonMatches(String actualJson, String patternJson) {
-        Optional<String> errorMessage = jsonMatches(actualJson, patternJson);
-        errorMessage.ifPresent(m -> {
-            throw new AssertionError(m);
-        });
+        jsonMatches(actualJson, patternJson)
+                .ifPresent(error -> {
+                    throw new AssertionError(String.format("%s%nexpected:<%s> but was:<%s>", error.getMessage(), error.getExpected(), error.getActual()));
+                });
     }
 
-    public static Optional<String> jsonMatches(String actualJson, String patternJson) {
+    public static Optional<JsonMatchError> jsonMatches(String actualJson, String patternJson) {
         ObjectMapper mapper = JsonUtil.getObjectMapper();
         JsonNode actualTree;
         JsonNode patternTree;
@@ -24,16 +24,16 @@ public class JsonMatch {
         try {
             actualTree = mapper.readTree(actualJson);
         } catch (JsonProcessingException e) {
-            return Optional.of("Failed to parse actualJson");
+            return Optional.of(new JsonMatchError("Failed to parse actualJson", actualJson, patternJson));
         }
         try {
             patternTree = mapper.readTree(patternJson);
         } catch (JsonProcessingException e) {
-            return Optional.of("Failed to parse patternJson");
+            return Optional.of(new JsonMatchError("Failed to parse patternJson", actualJson, patternJson));
         }
 
         JsonPatternNode rootPattern = JsonMatchPatternParser.parse(patternTree);
-        Optional<JsonMatchError> error = rootPattern.matches(JsonPath.ROOT, actualTree);
-        return error.map(errorMessage -> String.format("%s%nexpected:<%s> but was:<%s>", errorMessage, patternTree.toPrettyString(), actualTree.toPrettyString()));
+        return rootPattern.matches(JsonPath.ROOT, actualTree)
+                .map(errorDetail -> new JsonMatchError(errorDetail.toString(), actualTree.toPrettyString(), patternTree.toPrettyString()));
     }
 }

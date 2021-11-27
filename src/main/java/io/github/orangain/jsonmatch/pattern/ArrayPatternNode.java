@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchError;
+import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.JsonPath;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,12 +15,12 @@ public abstract class ArrayPatternNode extends JsonPatternNode {
 
     @NotNull
     @Override
-    public Optional<JsonMatchError> matches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (!actualNode.isArray()) {
             return Optional.of(error(jsonPath, actualNode, "not an array"));
         }
 
-        Optional<JsonMatchError> sizeError = sizeMatches(jsonPath, actualNode);
+        Optional<JsonMatchErrorDetail> sizeError = sizeMatches(jsonPath, actualNode);
         if (sizeError.isPresent()) {
             return sizeError;
         }
@@ -29,8 +29,8 @@ public abstract class ArrayPatternNode extends JsonPatternNode {
     }
 
     @NotNull
-    protected abstract Optional<JsonMatchError> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode);
+    protected abstract Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode);
 
     @NotNull
-    protected abstract Optional<JsonMatchError> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode);
+    protected abstract Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode);
 }
