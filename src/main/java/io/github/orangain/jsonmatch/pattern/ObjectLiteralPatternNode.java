@@ -23,6 +23,10 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
     @NotNull
     @Override
     public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+        if (!actualNode.isObject()) {
+            String reason = "not a json object";
+            return Optional.of(error(path, actualNode, reason));
+        }
         Set<String> actualFieldNames = new HashSet<>();
         actualNode.fieldNames().forEachRemaining(actualFieldNames::add);
 
