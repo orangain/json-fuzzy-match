@@ -22,8 +22,10 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.25.2")
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
