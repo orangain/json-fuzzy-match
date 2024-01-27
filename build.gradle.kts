@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `java-library`
     `maven-publish`
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.9.22"
 }
 
 group = "com.github.orangain"
@@ -17,13 +17,15 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
     implementation("org.assertj:assertj-core:3.25.2")
     implementation("org.jetbrains:annotations:24.1.0")
-    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.25.2")
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
