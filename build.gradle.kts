@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
     implementation("org.assertj:assertj-core:3.21.0")
     implementation("org.jetbrains:annotations:22.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
