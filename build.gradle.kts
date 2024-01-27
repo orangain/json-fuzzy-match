@@ -15,11 +15,11 @@ repositories {
 
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
-    implementation("org.assertj:assertj-core:3.21.0")
+    implementation("org.assertj:assertj-core:3.25.2")
     implementation("org.jetbrains:annotations:22.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation("org.assertj:assertj-core:3.25.2")
 }
 
 configure<JavaPluginConvention> {
