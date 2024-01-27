@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `java-library`
     `maven-publish`
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.9.22"
 }
 
 group = "com.github.orangain"
