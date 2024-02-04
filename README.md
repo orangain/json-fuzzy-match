@@ -1,4 +1,4 @@
-# json-fuzzy-match [![JitPack](https://jitpack.io/v/orangain/json-fuzzy-match.svg)](https://jitpack.io/#orangain/json-fuzzy-match) [![Java CI](https://github.com/orangain/json-fuzzy-match/workflows/Java%20CI/badge.svg)](https://github.com/orangain/json-fuzzy-match/actions?query=workflow%3A%22Java+CI%22)
+# json-fuzzy-match [![Maven Central Version](https://img.shields.io/maven-central/v/io.github.orangain/json-fuzzy-match)](https://central.sonatype.com/artifact/io.github.orangain/json-fuzzy-match) [![Java CI](https://github.com/orangain/json-fuzzy-match/workflows/Java%20CI/badge.svg)](https://github.com/orangain/json-fuzzy-match/actions?query=workflow%3A%22Java+CI%22)
 
 json-fuzzy-match provides assertion to check whether a JSON string fuzzily matches a pattern for JVM languages.
 This is useful when you test JSON response including dynamic or generated value.
@@ -49,35 +49,24 @@ Sample codes in this README are written in Kotlin.
 
 ## Install
 
-json-fuzzy-match is available on [JitPack](https://jitpack.io/#orangain/json-fuzzy-match).
+json-fuzzy-match is available on [Maven Central](https://central.sonatype.com/artifact/io.github.orangain/json-fuzzy-match).
 
 ### Gradle Kotlin DSL
 
 ```kts
-repositories {
-  maven { setUrl("https://jitpack.io") }
-}
-
 dependencies {
-  testImplementation("com.github.orangain:json-fuzzy-match:0.5.0")
+  testImplementation("io.github.orangain:json-fuzzy-match:0.5.2-alpha2")
 }
 ```
 
 ### Maven
 
 ```xml
-<repositories>
-  <repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
-  </repository>
-</repositories>
-
 <dependencies>
   <dependency>
-    <groupId>com.github.orangain</groupId>
+    <groupId>io.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.2-alpha2</version>
   </dependency>
 </dependencies>
 ```

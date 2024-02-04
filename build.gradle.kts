@@ -1,13 +1,15 @@
+import cl.franciscosolis.sonatypecentralupload.SonatypeCentralUploadTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `java-library`
     `maven-publish`
     kotlin("jvm") version "1.9.22"
+    id("cl.franciscosolis.sonatype-central-upload") version "1.0.2"
 }
 
-group = "com.github.orangain"
-version = "0.5.0"
+group = "io.github.orangain"
+version = "0.5.2-alpha2"
 
 repositories {
     mavenCentral()
@@ -26,27 +28,16 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
     }
+    withSourcesJar()
+    withJavadocJar()
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
-}
-
-val javadocJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("javadoc")
-    from(tasks.javadoc)
-}
-
 publishing {
     publications {
         register<MavenPublication>("maven") {
-            from(components["java"])
-            artifact(sourcesJar.get())
-            artifact(javadocJar.get())
             groupId = project.group as String
             artifactId = project.name
             version = project.version as String
@@ -74,4 +65,25 @@ publishing {
             }
         }
     }
+}
+
+tasks.named<SonatypeCentralUploadTask>("sonatypeCentralUpload") {
+    dependsOn("jar", "sourcesJar", "javadocJar", "generatePomFileForMavenPublication")
+
+    username = System.getenv("SONATYPE_CENTRAL_USERNAME")  // This is your Sonatype generated username
+    password = System.getenv("SONATYPE_CENTRAL_PASSWORD")  // This is your sonatype generated password
+
+    // This is a list of files to upload. Ideally you would point to your jar file, source and javadoc jar (required by central)
+    archives = files(
+        tasks.named("jar"),
+        tasks.named("sourcesJar"),
+        tasks.named("javadocJar"),
+    )
+    // This is the pom file to upload. This is required by central
+    pom = file(
+        tasks.named("generatePomFileForMavenPublication").get().outputs.files.single()
+    )
+
+    signingKey = System.getenv("PGP_SIGNING_KEY")  // This is your PGP private key. This is required to sign your files
+    signingKeyPassphrase = System.getenv("PGP_SIGNING_KEY_PASSPHRASE")  // This is your PGP private key passphrase (optional) to decrypt your private key
 }
