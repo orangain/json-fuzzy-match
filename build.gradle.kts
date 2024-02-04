@@ -8,7 +8,7 @@ plugins {
     id("cl.franciscosolis.sonatype-central-upload") version "1.0.2"
 }
 
-group = "com.github.orangain"
+group = "io.github.orangain"
 version = "0.5.2-alpha1"
 
 repositories {
