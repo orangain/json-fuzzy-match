@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.orangain"
-version = "0.5.0"
+version = "0.5.2-alpha1"
 
 repositories {
     mavenCentral()
