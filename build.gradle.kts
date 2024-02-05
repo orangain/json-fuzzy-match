@@ -38,9 +38,6 @@ tasks.withType<KotlinCompile> {
 publishing {
     publications {
         register<MavenPublication>("maven") {
-            groupId = project.group as String
-            artifactId = project.name
-            version = project.version as String
             pom {
                 name.set(project.name)
                 description.set("Custom assertion to check JSON string matches pattern.")
