@@ -1,4 +1,4 @@
-name: Deploy to Central Repository
+name: Publish to Central Repository
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '*.*.*'
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     environment:
       name: production
@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 11
           distribution: temurin
-      - name: Deploy to Central Repository
+      - name: Publish to Central Repository
         run: ./gradlew sonatypeCentralUpload
         env:
           SONATYPE_CENTRAL_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
