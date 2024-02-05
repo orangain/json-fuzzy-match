@@ -55,7 +55,7 @@ json-fuzzy-match is available on [Maven Central](https://central.sonatype.com/ar
 
 ```kts
 dependencies {
-  testImplementation("io.github.orangain:json-fuzzy-match:0.6.0-alpha1")
+  testImplementation("io.github.orangain:json-fuzzy-match:0.6.0")
 }
 ```
 
@@ -66,7 +66,7 @@ dependencies {
   <dependency>
     <groupId>io.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.6.0-alpha1</version>
+    <version>0.6.0</version>
   </dependency>
 </dependencies>
 ```
