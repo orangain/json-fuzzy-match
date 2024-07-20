@@ -1,4 +1,4 @@
-package io.github.orangain.jsonmatch;
+package io.github.orangain.jsonmatch.json;
 
 import org.jetbrains.annotations.NotNull;
 

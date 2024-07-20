@@ -1,5 +1,6 @@
-package io.github.orangain.jsonmatch;
+package io.github.orangain.jsonmatch.pattern;
 
+import io.github.orangain.jsonmatch.json.JsonPath;
 import org.jetbrains.annotations.NotNull;
 
 /**

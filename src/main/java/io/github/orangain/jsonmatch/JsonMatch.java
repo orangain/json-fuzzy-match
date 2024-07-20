@@ -3,6 +3,9 @@ package io.github.orangain.jsonmatch;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.orangain.jsonmatch.json.JsonPath;
+import io.github.orangain.jsonmatch.json.JsonUtil;
+import io.github.orangain.jsonmatch.parser.JsonMatchPatternParser;
 import io.github.orangain.jsonmatch.pattern.JsonPatternNode;
 
 import java.util.Optional;

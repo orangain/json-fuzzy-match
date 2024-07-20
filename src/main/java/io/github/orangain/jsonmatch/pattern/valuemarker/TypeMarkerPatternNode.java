@@ -2,9 +2,9 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
-import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
-import io.github.orangain.jsonmatch.JsonPath;
-import io.github.orangain.jsonmatch.JsonUtil;
+import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
+import io.github.orangain.jsonmatch.json.JsonPath;
+import io.github.orangain.jsonmatch.json.JsonUtil;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 

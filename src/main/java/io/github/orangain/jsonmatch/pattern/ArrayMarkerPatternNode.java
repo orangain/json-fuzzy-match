@@ -1,8 +1,7 @@
 package io.github.orangain.jsonmatch.pattern;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.JsonMatchErrorDetail;
-import io.github.orangain.jsonmatch.JsonPath;
+import io.github.orangain.jsonmatch.json.JsonPath;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
