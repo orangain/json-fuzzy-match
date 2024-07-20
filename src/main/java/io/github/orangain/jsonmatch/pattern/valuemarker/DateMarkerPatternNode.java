@@ -12,13 +12,24 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+/**
+ * JSON value pattern node that matches a date string. The pattern is represented by the "#date" marker.
+ */
 public class DateMarkerPatternNode extends ValuePatternNode {
     private static DateMarkerPatternNode instance;
 
+    /**
+     * Constructor of the JSON date pattern node.
+     * @param expected The string representation of the expected JSON date pattern.
+     */
     public DateMarkerPatternNode(@NotNull String expected) {
         super(expected);
     }
 
+    /**
+     * Get the singleton instance of the JSON date pattern node.
+     * @return The singleton instance of the JSON date pattern node.
+     */
     public static DateMarkerPatternNode getInstance() {
         if (instance == null) {
             instance = new DateMarkerPatternNode(JsonUtil.toJsonString("#date"));

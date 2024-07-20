@@ -12,9 +12,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+/**
+ * JSON value pattern node that matches a date-time string. The pattern is represented by the "#datetime" marker.
+ */
 public class DateTimeMarkerPatternNode extends ValuePatternNode {
     private static DateTimeMarkerPatternNode instance;
 
+    /**
+     * Constructor of the JSON date-time pattern node.
+     * @param expected The string representation of the expected JSON date-time pattern.
+     */
     public DateTimeMarkerPatternNode(@NotNull String expected) {
         super(expected);
     }
