@@ -10,9 +10,17 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parser for JSON match patterns.
+ */
 public class JsonMatchPatternParser {
     private static final Pattern ARRAY_PATTERN = Pattern.compile("\\A#\\[(\\d*)\\](.*)\\z");
 
+    /**
+     * Parse a JSON match pattern from a JSON node.
+     * @param jsonNode The JSON node to parse.
+     * @return The parsed JSON match pattern node.
+     */
     @NotNull
     public static JsonPatternNode parse(@NotNull JsonNode jsonNode) {
         if (jsonNode.isObject()) {

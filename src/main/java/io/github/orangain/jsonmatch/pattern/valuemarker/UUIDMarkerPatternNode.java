@@ -10,13 +10,24 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * JSON value pattern node that matches a UUID marker. The pattern is represented by the "#uuid" marker.
+ */
 public class UUIDMarkerPatternNode extends ValuePatternNode {
     private static UUIDMarkerPatternNode instance;
 
+    /**
+     * Constructor of the JSON UUID marker pattern node.
+     * @param expected The string representation of the expected JSON UUID marker pattern.
+     */
     public UUIDMarkerPatternNode(@NotNull String expected) {
         super(expected);
     }
 
+    /**
+     * Get the singleton instance of the JSON UUID marker pattern node.
+     * @return The singleton instance of the JSON UUID marker pattern node.
+     */
     public static UUIDMarkerPatternNode getInstance() {
         if (instance == null) {
             instance = new UUIDMarkerPatternNode(JsonUtil.toJsonString("#uuid"));

@@ -8,18 +8,42 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+/**
+ * JSON array pattern node that matches a JSON array. The pattern is represented by the "#array" marker.
+ */
 public class ArrayMarkerPatternNode extends ArrayPatternNode {
-    private final int expectedSize; // -1 when any size is allowed
-    private final JsonPatternNode expectedChildPattern; // null when any item is allowed
+    /**
+     * The expected size of the array. -1 means any size is allowed.
+     */
+    private final int expectedSize;
+    /**
+     * The expected pattern for each element of the array. Null means any child pattern is allowed.
+     */
+    private final JsonPatternNode expectedChildPattern;
 
+    /**
+     * Constructor of the JSON array pattern node with no expected size or child pattern.
+     * @param expected The string representation of the expected JSON array pattern.
+     */
     public ArrayMarkerPatternNode(@NotNull String expected) {
         this(expected, null);
     }
 
+    /**
+     * Constructor of the JSON array pattern node with child pattern but no expected size.
+     * @param expected The string representation of the expected JSON array pattern.
+     * @param expectedChildPattern The expected pattern for each element of the array.
+     */
     public ArrayMarkerPatternNode(@NotNull String expected, @Nullable JsonPatternNode expectedChildPattern) {
         this(expected, -1, expectedChildPattern);
     }
 
+    /**
+     * Constructor of the JSON array pattern node with expected size and child pattern.
+     * @param expected The string representation of the expected JSON array pattern.
+     * @param expectedSize The expected size of the array.
+     * @param expectedChildPattern The expected pattern for each element of the array.
+     */
     public ArrayMarkerPatternNode(@NotNull String expected, int expectedSize, @Nullable JsonPatternNode expectedChildPattern) {
         super(expected);
         this.expectedSize = expectedSize;
