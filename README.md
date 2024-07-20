@@ -93,33 +93,33 @@ In the above examples, the second argument `patternJson` contains `#notnull` mar
 The assertion means that value of `foo` field must exist and not null.
 There are several markers as followings:
 
-Marker | Description
------- | -----------
-`#ignore` | Skip comparison for this field even if the data element or JSON key is present
-`#null` | Expects actual value to be `null`, and the data element or JSON key *must* be present
-`#notnull` | Expects actual value to be not-`null`
-`#present` | Actual value can be any type or *even* `null`, but the key *must* be present
-`#notpresent` | Expects the key to be **not** present at all
-`#array` | Expects actual value to be a JSON array
-`#object` | Expects actual value to be a JSON object
-`#boolean` | Expects actual value to be a boolean `true` or `false`
-`#number` | Expects actual value to be a number
-`#string` | Expects actual value to be a string
-`#uuid` | Expects actual (string) value to conform to the UUID format
-`#date` | Expects actual (string) value to conform to the local date in the ISO 8601 extended format
-`#datetime` | Expects actual (string) value to conform to the datetime with timezone in the ISO 8601 extended format
-`#regex STR` | Expects actual (string) value to match the regular-expression 'STR' (see examples below)
-`#[NUM] EXPR` | Advanced array marker. When NUM is provided, array must has length just NUM. When EXPR is provided, array's element must match the pattern 'EXPR' (see examples below)
+| Marker        | Description                                                                                                                                                            |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `#ignore`     | Skip comparison for this field even if the data element or JSON key is present                                                                                         |
+| `#null`       | Expects actual value to be `null`, and the data element or JSON key *must* be present                                                                                  |
+| `#notnull`    | Expects actual value to be not-`null`                                                                                                                                  |
+| `#present`    | Actual value can be any type or *even* `null`, but the key *must* be present                                                                                           |
+| `#notpresent` | Expects the key to be **not** present at all                                                                                                                           |
+| `#array`      | Expects actual value to be a JSON array                                                                                                                                |
+| `#object`     | Expects actual value to be a JSON object                                                                                                                               |
+| `#boolean`    | Expects actual value to be a boolean `true` or `false`                                                                                                                 |
+| `#number`     | Expects actual value to be a number                                                                                                                                    |
+| `#string`     | Expects actual value to be a string                                                                                                                                    |
+| `#uuid`       | Expects actual (string) value to conform to the UUID format                                                                                                            |
+| `#date`       | Expects actual (string) value to conform to the local date in the ISO 8601 extended format                                                                             |
+| `#datetime`   | Expects actual (string) value to conform to the datetime with timezone in the ISO 8601 extended format                                                                 |
+| `#regex STR`  | Expects actual (string) value to match the regular-expression 'STR' (see examples below)                                                                               |
+| `#[NUM] EXPR` | Advanced array marker. When NUM is provided, array must has length just NUM. When EXPR is provided, array's element must match the pattern 'EXPR' (see examples below) |
 
 ### Examples
 
-Pattern                  | `{}`                     | `{ "a": null }`          | `{ "a": "abc" }`
------------------------- | ------------------------ | ------------------------ | -------------------------
-`{ "a": "#ignore" }`     | :white_check_mark: match | :white_check_mark: match | :white_check_mark: match
-`{ "a": "#null" }`       | :x: not match            | :white_check_mark: match | :x: not match
-`{ "a": "#notnull" }`    | :x: not match            | :x: not match            | :white_check_mark: match
-`{ "a": "#present" }`    | :x: not match            | :white_check_mark: match | :white_check_mark: match
-`{ "a": "#notpresent" }` | :white_check_mark: match | :x: not match            | :x: not match
+| Pattern                  | `{}`                     | `{ "a": null }`          | `{ "a": "abc" }`         |
+|--------------------------|--------------------------|--------------------------|--------------------------|
+| `{ "a": "#ignore" }`     | :white_check_mark: match | :white_check_mark: match | :white_check_mark: match |
+| `{ "a": "#null" }`       | :x: not match            | :white_check_mark: match | :x: not match            |
+| `{ "a": "#notnull" }`    | :x: not match            | :x: not match            | :white_check_mark: match |
+| `{ "a": "#present" }`    | :x: not match            | :white_check_mark: match | :white_check_mark: match |
+| `{ "a": "#notpresent" }` | :white_check_mark: match | :x: not match            | :x: not match            |
 
 #### Date marker
 
