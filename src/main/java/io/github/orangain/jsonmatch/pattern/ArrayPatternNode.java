@@ -15,7 +15,7 @@ public abstract class ArrayPatternNode extends JsonPatternNode {
      * Constructor of the JSON array pattern node.
      * @param expected The string representation of the expected JSON array pattern.
      */
-    public ArrayPatternNode(@NotNull String expected) {
+    protected ArrayPatternNode(@NotNull String expected) {
         super(expected);
     }
 

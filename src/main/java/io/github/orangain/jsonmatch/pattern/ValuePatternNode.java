@@ -10,7 +10,7 @@ public abstract class ValuePatternNode extends JsonPatternNode {
      * Constructor of the JSON simple pattern node.
      * @param expected The string representation of the expected JSON simple pattern.
      */
-    public ValuePatternNode(@NotNull String expected) {
+    protected ValuePatternNode(@NotNull String expected) {
         super(expected);
     }
 }

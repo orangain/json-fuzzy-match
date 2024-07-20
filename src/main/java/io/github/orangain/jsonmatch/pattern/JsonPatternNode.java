@@ -20,7 +20,7 @@ public abstract class JsonPatternNode {
      * Constructor of the JSON pattern node.
      * @param expected The string representation of the expected JSON pattern.
      */
-    public JsonPatternNode(@NotNull String expected) {
+    protected JsonPatternNode(@NotNull String expected) {
         this.expected = expected;
     }
 
