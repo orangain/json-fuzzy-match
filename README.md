@@ -57,7 +57,7 @@ on [Maven Central](https://central.sonatype.com/artifact/io.github.orangain/json
 
 ```kts
 dependencies {
-  testImplementation("io.github.orangain:json-fuzzy-match:0.6.0")
+  testImplementation("io.github.orangain:json-fuzzy-match:0.7.0-alpha1")
 }
 ```
 
@@ -68,7 +68,7 @@ dependencies {
   <dependency>
     <groupId>io.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.6.0</version>
+    <version>0.7.0-alpha1</version>
   </dependency>
 </dependencies>
 ```
