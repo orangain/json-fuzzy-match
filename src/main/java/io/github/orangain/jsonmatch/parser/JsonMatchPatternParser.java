@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * Parser for JSON match patterns.
  */
 public class JsonMatchPatternParser {
-    private static final Pattern ARRAY_PATTERN = Pattern.compile("\\A#\\[(\\d*)\\](.*)\\z");
+    private static final @NotNull Pattern ARRAY_PATTERN = Pattern.compile("\\A#\\[(\\d*)\\](.*)\\z");
 
     /**
      * Parse a JSON match pattern from a JSON node.

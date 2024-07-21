@@ -6,12 +6,12 @@ import org.jetbrains.annotations.NotNull;
  * Simple subset of JSON path. It supports only root, array item, and object field.
  */
 public class JsonPath {
-    private final String path;
+    private final @NotNull String path;
 
     /**
      * The root JSON path.
      */
-    public static JsonPath ROOT = new JsonPath("$");
+    public static @NotNull JsonPath ROOT = new JsonPath("$");
 
     /**
      * Constructor of the JSON path.

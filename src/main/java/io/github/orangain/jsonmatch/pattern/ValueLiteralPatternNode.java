@@ -10,7 +10,7 @@ import java.util.Optional;
  * JSON simple value pattern node that matches a JSON value with a fixed value.
  */
 public class ValueLiteralPatternNode extends ValuePatternNode {
-    private final JsonNode expectedJsonNode;
+    private final @NotNull JsonNode expectedJsonNode;
 
     /**
      * Constructor of the JSON simple value pattern node.

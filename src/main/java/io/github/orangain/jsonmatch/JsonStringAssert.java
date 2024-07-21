@@ -21,7 +21,7 @@ public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
      * @param actual The JSON string to make assertions on.
      * @return A new instance of JsonStringAssert.
      */
-    public static JsonStringAssert assertThat(String actual) {
+    public static @NotNull JsonStringAssert assertThat(String actual) {
         return new JsonStringAssert(actual, JsonStringAssert.class);
     }
 
@@ -30,7 +30,7 @@ public class JsonStringAssert extends AbstractAssert<JsonStringAssert, String> {
      * @param patternJson The pattern JSON string.
      * @return This assertion object.
      */
-    public JsonStringAssert jsonMatches(String patternJson) {
+    public @NotNull JsonStringAssert jsonMatches(String patternJson) {
         isNotNull();
 
         JsonMatch.jsonMatches(actual, patternJson)

@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
  * JSON match error detail.
  */
 public class JsonMatchErrorDetail {
-    private final JsonPath path;
-    private final String reason;
-    private final String actual;
-    private final String expected;
+    private final @NotNull JsonPath path;
+    private final @NotNull String reason;
+    private final @NotNull String actual;
+    private final @NotNull String expected;
 
     /**
      * Constructor of the JSON match error detail.
@@ -27,7 +27,7 @@ public class JsonMatchErrorDetail {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return "path: " + path +
                 ", actual: " + actual +
                 ", expected: " + expected +

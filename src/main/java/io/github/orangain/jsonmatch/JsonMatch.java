@@ -32,7 +32,7 @@ public class JsonMatch {
      * @param patternJson The pattern JSON string.
      * @return An {@link Optional} of {@link JsonMatchError} if the actual JSON does not match the pattern JSON.
      */
-    public static Optional<JsonMatchError> jsonMatches(String actualJson, String patternJson) {
+    public static @NotNull Optional<JsonMatchError> jsonMatches(String actualJson, String patternJson) {
         ObjectMapper mapper = JsonUtil.getObjectMapper();
         JsonNode actualTree;
         JsonNode patternTree;

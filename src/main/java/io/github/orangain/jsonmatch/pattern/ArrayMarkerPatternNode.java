@@ -18,7 +18,7 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
     /**
      * The expected pattern for each element of the array. Null means any child pattern is allowed.
      */
-    private final JsonPatternNode expectedChildPattern;
+    private final @Nullable JsonPatternNode expectedChildPattern;
 
     /**
      * Constructor of the JSON array pattern node with no expected size or child pattern.

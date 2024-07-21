@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JsonMatchError {
 
-    private final String message;
-    private final String actual;
-    private final String expected;
+    private final @NotNull String message;
+    private final @NotNull String actual;
+    private final @NotNull String expected;
 
     /**
      * Constructor of the JSON match error.
@@ -27,7 +27,7 @@ public class JsonMatchError {
      * Get the error message.
      * @return The error message.
      */
-    public String getMessage() {
+    public @NotNull String getMessage() {
         return message;
     }
 
@@ -35,7 +35,7 @@ public class JsonMatchError {
      * Get the actual JSON string.
      * @return The actual JSON string.
      */
-    public String getActual() {
+    public @NotNull String getActual() {
         return actual;
     }
 
@@ -43,7 +43,7 @@ public class JsonMatchError {
      * Get the expected JSON string.
      * @return The expected JSON string.
      */
-    public String getExpected() {
+    public @NotNull String getExpected() {
         return expected;
     }
 }

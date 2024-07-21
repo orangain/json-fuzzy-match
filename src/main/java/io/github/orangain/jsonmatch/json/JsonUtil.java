@@ -7,13 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * JSON utility class.
  */
 public class JsonUtil {
-    private static ObjectMapper objectMapper;
+    private static @Nullable ObjectMapper objectMapper = null;
 
     /**
      * Get the singleton instance of the Jackson {@link ObjectMapper}.
      * @return The singleton instance of the Jackson {@link ObjectMapper}.
      */
-    public static ObjectMapper getObjectMapper() {
+    public static @NotNull ObjectMapper getObjectMapper() {
         if (objectMapper == null) {
             objectMapper = new ObjectMapper();
         }
@@ -25,7 +25,7 @@ public class JsonUtil {
      * @param value The object to convert to a JSON string.
      * @return The JSON string.
      */
-    public static String toJsonString(Object value) {
+    public static @NotNull String toJsonString(Object value) {
         try {
             return getObjectMapper().writeValueAsString(value);
         } catch (JsonProcessingException e) {

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * JSON object pattern node that matches a JSON object with fixed key-value pairs.
  */
 public class ObjectLiteralPatternNode extends ObjectPatternNode {
-    private final Map<String, JsonPatternNode> expectedChildren;
+    private final @NotNull Map<String, JsonPatternNode> expectedChildren;
 
     /**
      * Constructor of the JSON object pattern node.

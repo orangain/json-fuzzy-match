@@ -11,14 +11,14 @@ import java.util.Optional;
  * JSON array pattern node that matches a JSON array with a fixed number of elements and specific patterns for each element.
  */
 public class ArrayLiteralPatternNode extends ArrayPatternNode {
-    private final List<JsonPatternNode> expectedChildren;
+    private final @NotNull List<JsonPatternNode> expectedChildren;
 
     /**
      * Constructor of the JSON array pattern node.
      * @param expected The string representation of the expected JSON array pattern.
      * @param expectedChildren The expected patterns for each element of the array.
      */
-    public ArrayLiteralPatternNode(@NotNull String expected, List<JsonPatternNode> expectedChildren) {
+    public ArrayLiteralPatternNode(@NotNull String expected, @NotNull List<JsonPatternNode> expectedChildren) {
         super(expected);
         this.expectedChildren = expectedChildren;
     }
