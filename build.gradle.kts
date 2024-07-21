@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.orangain"
-version = "0.6.0"
+version = "0.7.0-alpha1"
 
 repositories {
     mavenCentral()
@@ -89,5 +89,6 @@ tasks.named<SonatypeCentralUploadTask>("sonatypeCentralUpload") {
     )
 
     signingKey = System.getenv("PGP_SIGNING_KEY")  // This is your PGP private key. This is required to sign your files
-    signingKeyPassphrase = System.getenv("PGP_SIGNING_KEY_PASSPHRASE")  // This is your PGP private key passphrase (optional) to decrypt your private key
+    signingKeyPassphrase =
+        System.getenv("PGP_SIGNING_KEY_PASSPHRASE")  // This is your PGP private key passphrase (optional) to decrypt your private key
 }

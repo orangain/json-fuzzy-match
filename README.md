@@ -44,18 +44,20 @@ JsonStringAssert.assertThat(response.content).jsonMatches("""
 """.trimIndent())
 ```
 
-It is recommended to use json-fuzzy-match with languages which have multi-line string literal such as Kotlin, Scala, Java 13+ and Groovy.
+It is recommended to use json-fuzzy-match with languages which have multi-line string literal such as Kotlin, Scala,
+Java 13+ and Groovy.
 Sample codes in this README are written in Kotlin.
 
 ## Install
 
-json-fuzzy-match is available on [Maven Central](https://central.sonatype.com/artifact/io.github.orangain/json-fuzzy-match).
+json-fuzzy-match is available
+on [Maven Central](https://central.sonatype.com/artifact/io.github.orangain/json-fuzzy-match).
 
 ### Gradle Kotlin DSL
 
 ```kts
 dependencies {
-  testImplementation("io.github.orangain:json-fuzzy-match:0.6.0")
+  testImplementation("io.github.orangain:json-fuzzy-match:0.7.0-alpha1")
 }
 ```
 
@@ -66,14 +68,15 @@ dependencies {
   <dependency>
     <groupId>io.github.orangain</groupId>
     <artifactId>json-fuzzy-match</artifactId>
-    <version>0.6.0</version>
+    <version>0.7.0-alpha1</version>
   </dependency>
 </dependencies>
 ```
 
 ## Usage
 
-json-fuzzy-match provides both [AssertJ](https://joel-costigliola.github.io/assertj/)-style and [JUnit](https://junit.org/junit5/)-style assertions.
+json-fuzzy-match provides both [AssertJ](https://joel-costigliola.github.io/assertj/)-style
+and [JUnit](https://junit.org/junit5/)-style assertions.
 
 ```kt
 // AssertJ-style
@@ -113,7 +116,8 @@ There are several markers as followings:
 
 ### Optional marker
 
-You can use double hash `##` to mark a field as optional. For example, `##string` means that the field can be a string, null or not present.
+You can use double hash `##` to mark a field as optional. For example, `##string` means that the field can be a string,
+null or not present.
 
 ### Examples
 
@@ -142,11 +146,12 @@ You can use double hash `##` to mark a field as optional. For example, `##string
 * `{ "id": "123" }` does not match the pattern `{ "id": "#regex [a-z]+" }`
 
 #### Advanced array marker
+
 * `{ "tags": ["awesome", "shop"] }` matches the following patterns:
-  * `{ "tags": "#[]" }`
-  * `{ "tags": "#[2]" }`
-  * `{ "tags": "#[] #string" }`
-  * `{ "tags": "#[2] #string" }`
+    * `{ "tags": "#[]" }`
+    * `{ "tags": "#[2]" }`
+    * `{ "tags": "#[] #string" }`
+    * `{ "tags": "#[2] #string" }`
 
 ## License
 
@@ -156,5 +161,6 @@ MIT License. See `LICENSE`.
 
 I'm very grateful for the [Karate](https://intuit.github.io/karate/) and its authors.
 The idea of the marker is heavily inspired by the Karate's wonderful fuzzy matching feature.
-Though json-fuzzy-match does not depend on Karate now, the first version of this library only provided a thin wrapper of Karate's feature.
+Though json-fuzzy-match does not depend on Karate now, the first version of this library only provided a thin wrapper of
+Karate's feature.
 Without it, I was not able to develop this library so quickly.
