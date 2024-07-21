@@ -2,7 +2,7 @@ package io.github.orangain.jsonmatch;
 
 import org.assertj.core.api.Assertions.assertThatCode
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 
 class AssertionTest {
@@ -43,11 +43,7 @@ class AssertionTest {
             JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("""{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
             """
-                path: $.foo, actual: "bar", expected: "#null", reason: not-null expected:<"{
-                  "foo" : "[#null]"
-                }"> but was:<"{
-                  "foo" : "[bar]"
-                }">
+                path: $.foo, actual: "bar", expected: "#null", reason: not-null
             """.trimIndent()
         )
     }

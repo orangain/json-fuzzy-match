@@ -2,7 +2,7 @@ package io.github.orangain.jsonmatch.marker
 
 import io.github.orangain.jsonmatch.JsonStringAssert
 import org.assertj.core.api.Assertions
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class BooleanMarkerTest {
     private val patternJson = """{ "a": "#boolean" }"""

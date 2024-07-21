@@ -21,7 +21,7 @@ dependencies {
     implementation("org.assertj:assertj-core:3.26.3")
     implementation("org.jetbrains:annotations:24.1.0")
     testImplementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
     testImplementation("org.assertj:assertj-core:3.26.3")
 }
 
@@ -36,6 +36,10 @@ tasks.withType<KotlinCompile> {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 publishing {

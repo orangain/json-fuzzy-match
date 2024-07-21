@@ -1,7 +1,7 @@
 package io.github.orangain.jsonmatch.marker
 
 import io.github.orangain.jsonmatch.JsonStringAssert
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class IgnoreMarkerTest {
     private val patternJson = """{ "a": "#ignore" }"""
