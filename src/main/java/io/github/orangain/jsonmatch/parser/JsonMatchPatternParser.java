@@ -29,7 +29,7 @@ public class JsonMatchPatternParser {
         } else if (jsonNode.isArray()) {
             return parseArray(jsonNode);
         } else {
-            return parseValue(jsonNode);
+            return parseSimpleValue(jsonNode);
         }
     }
 
@@ -57,7 +57,7 @@ public class JsonMatchPatternParser {
     }
 
     @NotNull
-    private static JsonPatternNode parseValue(@NotNull JsonNode jsonNode) {
+    private static JsonPatternNode parseSimpleValue(@NotNull JsonNode jsonNode) {
         if (jsonNode.isTextual()) {
             JsonPatternNode parsed = parseMarkerOrNull(jsonNode.textValue());
             if (parsed != null) {
