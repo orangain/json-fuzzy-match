@@ -26,8 +26,7 @@ public class JsonPath {
      * @param index The index of the array item.
      * @return The JSON path for the array item.
      */
-    @NotNull
-    public JsonPath arrayItem(int index) {
+    public @NotNull JsonPath arrayItem(int index) {
         return new JsonPath(path + "[" + index + "]");
     }
 
@@ -36,8 +35,7 @@ public class JsonPath {
      * @param fieldName The name of the object field.
      * @return The JSON path for the object field.
      */
-    @NotNull
-    public JsonPath objectField(@NotNull String fieldName) {
+    public @NotNull JsonPath objectField(@NotNull String fieldName) {
         return new JsonPath(path + "." + fieldName);
     }
 

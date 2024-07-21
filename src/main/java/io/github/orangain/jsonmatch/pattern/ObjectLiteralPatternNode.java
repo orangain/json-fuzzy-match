@@ -27,9 +27,8 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         this.expectedChildren = expectedChildren;
     }
 
-    @NotNull
     @Override
-    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (!actualNode.isObject()) {
             String reason = "not a json object";
             return Optional.of(error(path, actualNode, reason));

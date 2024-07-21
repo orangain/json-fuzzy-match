@@ -18,9 +18,8 @@ public class ObjectMarkerPatternNode extends ObjectPatternNode {
         super(expected);
     }
 
-    @NotNull
     @Override
-    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (!actualNode.isObject()) {
             return Optional.of(error(path, actualNode, "not a json object"));
         }

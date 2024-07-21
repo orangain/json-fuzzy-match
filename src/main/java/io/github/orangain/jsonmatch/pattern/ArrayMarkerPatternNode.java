@@ -49,9 +49,8 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
         this.expectedChildPattern = expectedChildPattern;
     }
 
-    @NotNull
     @Override
-    protected Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected @NotNull Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedSize >= 0 && expectedSize != actualNode.size()) {
             return Optional.of(error(jsonPath, actualNode, "actual array length was: " + actualNode.size()));
         }
@@ -59,9 +58,8 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
         return Optional.empty();
     }
 
-    @NotNull
     @Override
-    protected Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected @NotNull Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedChildPattern == null) return Optional.empty();
 
         for (int i = 0; i < actualNode.size(); i++) {

@@ -21,9 +21,8 @@ public class ValueLiteralPatternNode extends ValuePatternNode {
         this.expectedJsonNode = expectedJsonNode;
     }
 
-    @NotNull
     @Override
-    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (!expectedJsonNode.equals(actualNode)) {
             return Optional.of(error(path, actualNode, "not equal"));
         }

@@ -23,18 +23,16 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
         this.expectedChildren = expectedChildren;
     }
 
-    @NotNull
     @Override
-    protected Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected @NotNull Optional<JsonMatchErrorDetail> sizeMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         if (expectedChildren.size() != actualNode.size()) {
             return Optional.of(error(jsonPath, actualNode, "actual and expected arrays are not the same size - " + actualNode.size() + ":" + expectedChildren.size()));
         }
         return Optional.empty();
     }
 
-    @NotNull
     @Override
-    protected Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
+    protected @NotNull Optional<JsonMatchErrorDetail> childrenMatches(@NotNull JsonPath jsonPath, @NotNull JsonNode actualNode) {
         for (int i = 0; i < expectedChildren.size(); i++) {
             Optional<JsonMatchErrorDetail> error = expectedChildren.get(i).matches(jsonPath.arrayItem(i), actualNode.get(i));
             if (error.isPresent()) {

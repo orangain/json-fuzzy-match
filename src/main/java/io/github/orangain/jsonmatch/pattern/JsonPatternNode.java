@@ -29,8 +29,7 @@ public abstract class JsonPatternNode {
      * @param actualNode The actual JSON node.
      * @return An empty optional if the actual JSON node matches the pattern node, or an error detail if it does not match.
      */
-    @NotNull
-    public abstract Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode);
+    public abstract @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode);
 
     /**
      * Creates an error detail.
@@ -39,8 +38,7 @@ public abstract class JsonPatternNode {
      * @param reason The reason why the actual JSON node does not match the pattern node.
      * @return An error detail.
      */
-    @NotNull
-    protected JsonMatchErrorDetail error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
+    protected @NotNull JsonMatchErrorDetail error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
         return new JsonMatchErrorDetail(path, actualNode.toString(), expected, reason);
     }
 
