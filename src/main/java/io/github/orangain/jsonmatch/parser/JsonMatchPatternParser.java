@@ -70,6 +70,10 @@ public class JsonMatchPatternParser {
 
     @Nullable
     private static JsonPatternNode parseMarkerOrNull(@NotNull String value) {
+        if (!value.startsWith("#")) {
+            return null;
+        }
+
         switch (value) {
             case "#ignore":
                 return IgnoreMarkerPatternNode.getInstance();
