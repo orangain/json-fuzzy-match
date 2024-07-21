@@ -29,7 +29,7 @@ public class JsonMatchPatternParser {
         } else if (jsonNode.isArray()) {
             return parseArray(jsonNode);
         } else {
-            return parseValue(jsonNode);
+            return parseSimpleValue(jsonNode);
         }
     }
 
@@ -57,7 +57,7 @@ public class JsonMatchPatternParser {
     }
 
     @NotNull
-    private static JsonPatternNode parseValue(@NotNull JsonNode jsonNode) {
+    private static JsonPatternNode parseSimpleValue(@NotNull JsonNode jsonNode) {
         if (jsonNode.isTextual()) {
             JsonPatternNode parsed = parseMarkerOrNull(jsonNode.textValue());
             if (parsed != null) {
@@ -70,21 +70,42 @@ public class JsonMatchPatternParser {
 
     @Nullable
     private static JsonPatternNode parseMarkerOrNull(@NotNull String value) {
+        if (!value.startsWith("#")) {
+            return null;
+        }
+
         switch (value) {
             case "#ignore":
                 return IgnoreMarkerPatternNode.getInstance();
-            case "#null":
-                return TypeMarkerPatternNode.NULL;
             case "#notnull":
                 return NotNullMarkerPatternNode.getInstance();
             case "#present":
                 return PresentMarkerPatternNode.getInstance();
             case "#notpresent":
                 return NotPresentMarkerPatternNode.getInstance();
+        }
+
+        if (value.startsWith("##")) {
+            var innerNode = parseValueMarkerOrNull(value.substring(1));
+            if (innerNode != null) {
+                return new OptionalPatternNode(JsonUtil.toJsonString(value), innerNode);
+            } else {
+                return null;
+            }
+        } else {
+            return parseValueMarkerOrNull(value);
+        }
+    }
+
+    @Nullable
+    private static JsonPatternNode parseValueMarkerOrNull(@NotNull String value) {
+        switch (value) {
             case "#array":
                 return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value));
             case "#object":
                 return new ObjectMarkerPatternNode(JsonUtil.toJsonString(value));
+            case "#null":
+                return TypeMarkerPatternNode.NULL;
             case "#boolean":
                 return TypeMarkerPatternNode.BOOLEAN;
             case "#number":
@@ -103,6 +124,11 @@ public class JsonMatchPatternParser {
             return new RegexMarkerPatternNode(JsonUtil.toJsonString(value), value.substring("#regex".length()).trim());
         }
 
+        return parseArrayMarkerOrNull(value);
+    }
+
+    @Nullable
+    private static JsonPatternNode parseArrayMarkerOrNull(@NotNull String value) {
         Matcher arrayMatcher = ARRAY_PATTERN.matcher(value);
         if (arrayMatcher.matches()) {
             String length = arrayMatcher.group(1);
@@ -115,7 +141,6 @@ public class JsonMatchPatternParser {
                 return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value), Integer.parseInt(length), childPattern);
             }
         }
-
         return null;
     }
 }

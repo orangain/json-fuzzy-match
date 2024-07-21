@@ -111,6 +111,10 @@ There are several markers as followings:
 | `#regex STR`  | Expects actual (string) value to match the regular-expression 'STR' (see examples below)                                                                               |
 | `#[NUM] EXPR` | Advanced array marker. When NUM is provided, array must has length just NUM. When EXPR is provided, array's element must match the pattern 'EXPR' (see examples below) |
 
+### Optional marker
+
+You can use double hash `##` to mark a field as optional. For example, `##string` means that the field can be a string, null or not present.
+
 ### Examples
 
 | Pattern                  | `{}`                     | `{ "a": null }`          | `{ "a": "abc" }`         |
