@@ -7,14 +7,15 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JsonMatchError {
 
-    private final String message;
-    private final String actual;
-    private final String expected;
+    private final @NotNull String message;
+    private final @NotNull String actual;
+    private final @NotNull String expected;
 
     /**
      * Constructor of the JSON match error.
-     * @param message The error message.
-     * @param actual The actual JSON string.
+     *
+     * @param message  The error message.
+     * @param actual   The actual JSON string.
      * @param expected The expected JSON string.
      */
     public JsonMatchError(@NotNull String message, @NotNull String actual, @NotNull String expected) {
@@ -25,25 +26,28 @@ public class JsonMatchError {
 
     /**
      * Get the error message.
+     *
      * @return The error message.
      */
-    public String getMessage() {
+    public @NotNull String getMessage() {
         return message;
     }
 
     /**
      * Get the actual JSON string.
+     *
      * @return The actual JSON string.
      */
-    public String getActual() {
+    public @NotNull String getActual() {
         return actual;
     }
 
     /**
      * Get the expected JSON string.
+     *
      * @return The expected JSON string.
      */
-    public String getExpected() {
+    public @NotNull String getExpected() {
         return expected;
     }
 }

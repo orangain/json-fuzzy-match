@@ -15,15 +15,15 @@ import java.util.regex.Pattern;
  * Parser for JSON match patterns.
  */
 public class JsonMatchPatternParser {
-    private static final Pattern ARRAY_PATTERN = Pattern.compile("\\A#\\[(\\d*)\\](.*)\\z");
+    private static final @NotNull Pattern ARRAY_PATTERN = Pattern.compile("\\A#\\[(\\d*)\\](.*)\\z");
 
     /**
      * Parse a JSON match pattern from a JSON node.
+     *
      * @param jsonNode The JSON node to parse.
      * @return The parsed JSON match pattern node.
      */
-    @NotNull
-    public static JsonPatternNode parse(@NotNull JsonNode jsonNode) {
+    public static @NotNull JsonPatternNode parse(@NotNull JsonNode jsonNode) {
         if (jsonNode.isObject()) {
             return parseObject(jsonNode);
         } else if (jsonNode.isArray()) {
@@ -33,8 +33,7 @@ public class JsonMatchPatternParser {
         }
     }
 
-    @NotNull
-    private static JsonPatternNode parseObject(@NotNull JsonNode jsonNode) {
+    private static @NotNull JsonPatternNode parseObject(@NotNull JsonNode jsonNode) {
         Map<String, JsonPatternNode> children = new HashMap<>();
         for (Iterator<Map.Entry<String, JsonNode>> it = jsonNode.fields(); it.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = it.next();
@@ -45,8 +44,7 @@ public class JsonMatchPatternParser {
         return new ObjectLiteralPatternNode(jsonNode.toString(), children);
     }
 
-    @NotNull
-    private static JsonPatternNode parseArray(@NotNull JsonNode jsonNode) {
+    private static @NotNull JsonPatternNode parseArray(@NotNull JsonNode jsonNode) {
         List<JsonPatternNode> children = new ArrayList<>();
         for (int i = 0; i < jsonNode.size(); i++) {
             JsonNode childNode = jsonNode.get(i);
@@ -56,8 +54,7 @@ public class JsonMatchPatternParser {
         return new ArrayLiteralPatternNode(jsonNode.toString(), children);
     }
 
-    @NotNull
-    private static JsonPatternNode parseSimpleValue(@NotNull JsonNode jsonNode) {
+    private static @NotNull JsonPatternNode parseSimpleValue(@NotNull JsonNode jsonNode) {
         if (jsonNode.isTextual()) {
             JsonPatternNode parsed = parseMarkerOrNull(jsonNode.textValue());
             if (parsed != null) {
@@ -68,8 +65,7 @@ public class JsonMatchPatternParser {
         return new ValueLiteralPatternNode(jsonNode);
     }
 
-    @Nullable
-    private static JsonPatternNode parseMarkerOrNull(@NotNull String value) {
+    private static @Nullable JsonPatternNode parseMarkerOrNull(@NotNull String value) {
         if (!value.startsWith("#")) {
             return null;
         }
@@ -97,8 +93,7 @@ public class JsonMatchPatternParser {
         }
     }
 
-    @Nullable
-    private static JsonPatternNode parseValueMarkerOrNull(@NotNull String value) {
+    private static @Nullable JsonPatternNode parseValueMarkerOrNull(@NotNull String value) {
         switch (value) {
             case "#array":
                 return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value));
@@ -127,8 +122,7 @@ public class JsonMatchPatternParser {
         return parseArrayMarkerOrNull(value);
     }
 
-    @Nullable
-    private static JsonPatternNode parseArrayMarkerOrNull(@NotNull String value) {
+    private static @Nullable JsonPatternNode parseArrayMarkerOrNull(@NotNull String value) {
         Matcher arrayMatcher = ARRAY_PATTERN.matcher(value);
         if (arrayMatcher.matches()) {
             String length = arrayMatcher.group(1);

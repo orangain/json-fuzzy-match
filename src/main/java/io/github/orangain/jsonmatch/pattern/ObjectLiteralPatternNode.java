@@ -15,11 +15,12 @@ import java.util.stream.Collectors;
  * JSON object pattern node that matches a JSON object with fixed key-value pairs.
  */
 public class ObjectLiteralPatternNode extends ObjectPatternNode {
-    private final Map<String, JsonPatternNode> expectedChildren;
+    private final @NotNull Map<String, JsonPatternNode> expectedChildren;
 
     /**
      * Constructor of the JSON object pattern node.
-     * @param expected The string representation of the expected JSON object pattern.
+     *
+     * @param expected         The string representation of the expected JSON object pattern.
      * @param expectedChildren The expected pairs of key and value pattern node.
      */
     public ObjectLiteralPatternNode(@NotNull String expected, @NotNull Map<String, JsonPatternNode> expectedChildren) {
@@ -27,9 +28,8 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
         this.expectedChildren = expectedChildren;
     }
 
-    @NotNull
     @Override
-    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (!actualNode.isObject()) {
             String reason = "not a json object";
             return Optional.of(error(path, actualNode, reason));

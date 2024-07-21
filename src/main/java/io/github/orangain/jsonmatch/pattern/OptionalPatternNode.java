@@ -11,7 +11,7 @@ import java.util.Optional;
  * is present, it must match the inner node.
  */
 public class OptionalPatternNode extends JsonPatternNode {
-    private final JsonPatternNode innerNode;
+    private final @NotNull JsonPatternNode innerNode;
 
     /**
      * Constructor of the optional pattern node.
@@ -23,9 +23,8 @@ public class OptionalPatternNode extends JsonPatternNode {
         this.innerNode = innerNode;
     }
 
-    @NotNull
     @Override
-    public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
+    public @NotNull Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
         if (actualNode.isMissingNode() || actualNode.isNull()) {
             return Optional.empty();
         }

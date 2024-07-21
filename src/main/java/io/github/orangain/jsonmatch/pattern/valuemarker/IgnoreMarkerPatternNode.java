@@ -1,9 +1,9 @@
 package io.github.orangain.jsonmatch.pattern.valuemarker;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.json.JsonPath;
 import io.github.orangain.jsonmatch.json.JsonUtil;
+import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.pattern.JsonPatternNode;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +18,7 @@ public class IgnoreMarkerPatternNode extends ValuePatternNode {
 
     /**
      * Constructor of the JSON ignore marker pattern node.
+     *
      * @param expected The string representation of the expected JSON ignore marker pattern.
      */
     public IgnoreMarkerPatternNode(@NotNull String expected) {
@@ -26,6 +27,7 @@ public class IgnoreMarkerPatternNode extends ValuePatternNode {
 
     /**
      * Get the singleton instance of the JSON ignore marker pattern node.
+     *
      * @return The singleton instance of the JSON ignore marker pattern node.
      */
     public static JsonPatternNode getInstance() {

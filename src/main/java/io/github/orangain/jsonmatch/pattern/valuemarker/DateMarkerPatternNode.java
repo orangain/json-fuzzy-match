@@ -1,9 +1,9 @@
 package io.github.orangain.jsonmatch.pattern.valuemarker;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.json.JsonPath;
 import io.github.orangain.jsonmatch.json.JsonUtil;
+import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,6 +20,7 @@ public class DateMarkerPatternNode extends ValuePatternNode {
 
     /**
      * Constructor of the JSON date pattern node.
+     *
      * @param expected The string representation of the expected JSON date pattern.
      */
     public DateMarkerPatternNode(@NotNull String expected) {
@@ -28,6 +29,7 @@ public class DateMarkerPatternNode extends ValuePatternNode {
 
     /**
      * Get the singleton instance of the JSON date pattern node.
+     *
      * @return The singleton instance of the JSON date pattern node.
      */
     public static DateMarkerPatternNode getInstance() {
