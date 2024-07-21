@@ -77,18 +77,35 @@ public class JsonMatchPatternParser {
         switch (value) {
             case "#ignore":
                 return IgnoreMarkerPatternNode.getInstance();
-            case "#null":
-                return TypeMarkerPatternNode.NULL;
             case "#notnull":
                 return NotNullMarkerPatternNode.getInstance();
             case "#present":
                 return PresentMarkerPatternNode.getInstance();
             case "#notpresent":
                 return NotPresentMarkerPatternNode.getInstance();
+        }
+
+        if (value.startsWith("##")) {
+            var innerNode = parseValueMarkerOrNull(value.substring(1));
+            if (innerNode != null) {
+                return new OptionalPatternNode(JsonUtil.toJsonString(value), innerNode);
+            } else {
+                return null;
+            }
+        } else {
+            return parseValueMarkerOrNull(value);
+        }
+    }
+
+    @Nullable
+    private static JsonPatternNode parseValueMarkerOrNull(@NotNull String value) {
+        switch (value) {
             case "#array":
                 return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value));
             case "#object":
                 return new ObjectMarkerPatternNode(JsonUtil.toJsonString(value));
+            case "#null":
+                return TypeMarkerPatternNode.NULL;
             case "#boolean":
                 return TypeMarkerPatternNode.BOOLEAN;
             case "#number":
