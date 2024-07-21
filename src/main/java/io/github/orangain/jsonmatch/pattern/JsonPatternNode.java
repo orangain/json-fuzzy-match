@@ -13,7 +13,7 @@ public abstract class JsonPatternNode {
     /**
      * The string representation of the expected JSON pattern.
      */
-    private final String expected;
+    protected final String expected;
 
     /**
      * Constructor of the JSON pattern node.

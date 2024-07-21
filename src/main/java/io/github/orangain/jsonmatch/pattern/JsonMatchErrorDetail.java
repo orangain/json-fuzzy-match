@@ -33,4 +33,13 @@ public class JsonMatchErrorDetail {
                 ", expected: " + expected +
                 ", reason: " + reason;
     }
+
+    /**
+     * Creates a new JSON match error detail with the expected JSON string.
+     * @param expected The expected JSON string.
+     * @return A new JSON match error detail.
+     */
+    public @NotNull JsonMatchErrorDetail withExpected(String expected) {
+        return new JsonMatchErrorDetail(path, actual, expected, reason);
+    }
 }

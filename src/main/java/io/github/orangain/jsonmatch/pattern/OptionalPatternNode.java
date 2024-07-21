@@ -26,11 +26,11 @@ public class OptionalPatternNode extends JsonPatternNode {
     @NotNull
     @Override
     public Optional<JsonMatchErrorDetail> matches(@NotNull JsonPath path, @NotNull JsonNode actualNode) {
-        if (actualNode.isNull()) {
+        if (actualNode.isMissingNode() || actualNode.isNull()) {
             return Optional.empty();
         }
 
-        return innerNode.matches(path, actualNode);
+        return innerNode.matches(path, actualNode).map(detail -> detail.withExpected(expected));
     }
 
     @Override
