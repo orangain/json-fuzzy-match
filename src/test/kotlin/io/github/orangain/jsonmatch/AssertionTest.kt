@@ -43,11 +43,7 @@ class AssertionTest {
             JsonStringAssert.assertThat("""{"foo": "bar"}""").jsonMatches("""{ "foo": "#null" }""")
         }.isInstanceOf(AssertionError::class.java).hasMessage(
             """
-                path: $.foo, actual: "bar", expected: "#null", reason: not-null expected:<"{
-                  "foo" : "[#null]"
-                }"> but was:<"{
-                  "foo" : "[bar]"
-                }">
+                path: $.foo, actual: "bar", expected: "#null", reason: not-null
             """.trimIndent()
         )
     }
