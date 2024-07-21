@@ -103,6 +103,11 @@ public class JsonMatchPatternParser {
             return new RegexMarkerPatternNode(JsonUtil.toJsonString(value), value.substring("#regex".length()).trim());
         }
 
+        return parseArrayMarkerOrNull(value);
+    }
+
+    @Nullable
+    private static JsonPatternNode parseArrayMarkerOrNull(@NotNull String value) {
         Matcher arrayMatcher = ARRAY_PATTERN.matcher(value);
         if (arrayMatcher.matches()) {
             String length = arrayMatcher.group(1);
@@ -115,7 +120,6 @@ public class JsonMatchPatternParser {
                 return new ArrayMarkerPatternNode(JsonUtil.toJsonString(value), Integer.parseInt(length), childPattern);
             }
         }
-
         return null;
     }
 }
