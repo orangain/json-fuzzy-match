@@ -1,4 +1,4 @@
-package io.github.orangain.jsonmatch;
+package io.github.orangain.jsonmatch.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ public class JsonUtil {
      * Get the singleton instance of the Jackson {@link ObjectMapper}.
      * @return The singleton instance of the Jackson {@link ObjectMapper}.
      */
-    static ObjectMapper getObjectMapper() {
+    public static ObjectMapper getObjectMapper() {
         if (objectMapper == null) {
             objectMapper = new ObjectMapper();
         }
