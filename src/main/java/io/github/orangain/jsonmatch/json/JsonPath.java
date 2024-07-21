@@ -15,6 +15,7 @@ public class JsonPath {
 
     /**
      * Constructor of the JSON path.
+     *
      * @param path The JSON path string.
      */
     public JsonPath(@NotNull String path) {
@@ -23,6 +24,7 @@ public class JsonPath {
 
     /**
      * Get the JSON path for the array item.
+     *
      * @param index The index of the array item.
      * @return The JSON path for the array item.
      */
@@ -32,6 +34,7 @@ public class JsonPath {
 
     /**
      * Get the JSON path for the object field.
+     *
      * @param fieldName The name of the object field.
      * @return The JSON path for the object field.
      */

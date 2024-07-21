@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class ValuePatternNode extends JsonPatternNode {
     /**
      * Constructor of the JSON simple pattern node.
+     *
      * @param expected The string representation of the expected JSON simple pattern.
      */
     protected ValuePatternNode(@NotNull String expected) {

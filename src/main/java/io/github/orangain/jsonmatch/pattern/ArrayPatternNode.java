@@ -12,6 +12,7 @@ import java.util.Optional;
 public abstract class ArrayPatternNode extends JsonPatternNode {
     /**
      * Constructor of the JSON array pattern node.
+     *
      * @param expected The string representation of the expected JSON array pattern.
      */
     protected ArrayPatternNode(@NotNull String expected) {
@@ -34,7 +35,8 @@ public abstract class ArrayPatternNode extends JsonPatternNode {
 
     /**
      * Checks if the size of the actual JSON array node matches the pattern node.
-     * @param jsonPath The JSON path to the actual JSON node.
+     *
+     * @param jsonPath   The JSON path to the actual JSON node.
      * @param actualNode The actual JSON node.
      * @return An empty optional if the size matches, or an error detail if it does not match.
      */
@@ -42,7 +44,8 @@ public abstract class ArrayPatternNode extends JsonPatternNode {
 
     /**
      * Checks if the children of the actual JSON array node matches the pattern node.
-     * @param jsonPath The JSON path to the actual JSON node.
+     *
+     * @param jsonPath   The JSON path to the actual JSON node.
      * @param actualNode The actual JSON node.
      * @return An empty optional if the children matches, or an error detail if they do not match.
      */

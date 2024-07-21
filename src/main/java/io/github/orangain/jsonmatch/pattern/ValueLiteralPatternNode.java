@@ -14,6 +14,7 @@ public class ValueLiteralPatternNode extends ValuePatternNode {
 
     /**
      * Constructor of the JSON simple value pattern node.
+     *
      * @param expectedJsonNode The expected JSON value node.
      */
     public ValueLiteralPatternNode(@NotNull JsonNode expectedJsonNode) {

@@ -17,6 +17,7 @@ public abstract class JsonPatternNode {
 
     /**
      * Constructor of the JSON pattern node.
+     *
      * @param expected The string representation of the expected JSON pattern.
      */
     protected JsonPatternNode(@NotNull String expected) {
@@ -25,7 +26,8 @@ public abstract class JsonPatternNode {
 
     /**
      * Matches the JSON pattern node against the actual JSON node.
-     * @param path The JSON path to the actual JSON node.
+     *
+     * @param path       The JSON path to the actual JSON node.
      * @param actualNode The actual JSON node.
      * @return An empty optional if the actual JSON node matches the pattern node, or an error detail if it does not match.
      */
@@ -33,9 +35,10 @@ public abstract class JsonPatternNode {
 
     /**
      * Creates an error detail.
-     * @param path The JSON path to the actual JSON node.
+     *
+     * @param path       The JSON path to the actual JSON node.
      * @param actualNode The actual JSON node.
-     * @param reason The reason why the actual JSON node does not match the pattern node.
+     * @param reason     The reason why the actual JSON node does not match the pattern node.
      * @return An error detail.
      */
     protected @NotNull JsonMatchErrorDetail error(@NotNull JsonPath path, @NotNull JsonNode actualNode, @NotNull String reason) {
@@ -44,6 +47,7 @@ public abstract class JsonPatternNode {
 
     /**
      * Returns if the pattern node can be missing.
+     *
      * @return True if the pattern node can be missing, false otherwise.
      */
     protected boolean canBeMissing() {

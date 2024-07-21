@@ -22,6 +22,7 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
 
     /**
      * Constructor of the JSON array pattern node with no expected size or child pattern.
+     *
      * @param expected The string representation of the expected JSON array pattern.
      */
     public ArrayMarkerPatternNode(@NotNull String expected) {
@@ -30,7 +31,8 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
 
     /**
      * Constructor of the JSON array pattern node with child pattern but no expected size.
-     * @param expected The string representation of the expected JSON array pattern.
+     *
+     * @param expected             The string representation of the expected JSON array pattern.
      * @param expectedChildPattern The expected pattern for each element of the array.
      */
     public ArrayMarkerPatternNode(@NotNull String expected, @Nullable JsonPatternNode expectedChildPattern) {
@@ -39,8 +41,9 @@ public class ArrayMarkerPatternNode extends ArrayPatternNode {
 
     /**
      * Constructor of the JSON array pattern node with expected size and child pattern.
-     * @param expected The string representation of the expected JSON array pattern.
-     * @param expectedSize The expected size of the array.
+     *
+     * @param expected             The string representation of the expected JSON array pattern.
+     * @param expectedSize         The expected size of the array.
      * @param expectedChildPattern The expected pattern for each element of the array.
      */
     public ArrayMarkerPatternNode(@NotNull String expected, int expectedSize, @Nullable JsonPatternNode expectedChildPattern) {

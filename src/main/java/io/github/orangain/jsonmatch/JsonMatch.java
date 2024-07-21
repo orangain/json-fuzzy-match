@@ -7,6 +7,7 @@ import io.github.orangain.jsonmatch.json.JsonPath;
 import io.github.orangain.jsonmatch.json.JsonUtil;
 import io.github.orangain.jsonmatch.parser.JsonMatchPatternParser;
 import io.github.orangain.jsonmatch.pattern.JsonPatternNode;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -16,7 +17,8 @@ import java.util.Optional;
 public class JsonMatch {
     /**
      * Asserts that the actual JSON matches the pattern JSON.
-     * @param actualJson The actual JSON string.
+     *
+     * @param actualJson  The actual JSON string.
      * @param patternJson The pattern JSON string.
      */
     public static void assertJsonMatches(String actualJson, String patternJson) {
@@ -28,7 +30,8 @@ public class JsonMatch {
 
     /**
      * Checks if the actual JSON matches the pattern JSON.
-     * @param actualJson The actual JSON string.
+     *
+     * @param actualJson  The actual JSON string.
      * @param patternJson The pattern JSON string.
      * @return An {@link Optional} of {@link JsonMatchError} if the actual JSON does not match the pattern JSON.
      */

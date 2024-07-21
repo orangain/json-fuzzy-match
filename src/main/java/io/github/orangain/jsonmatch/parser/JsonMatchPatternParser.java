@@ -19,6 +19,7 @@ public class JsonMatchPatternParser {
 
     /**
      * Parse a JSON match pattern from a JSON node.
+     *
      * @param jsonNode The JSON node to parse.
      * @return The parsed JSON match pattern node.
      */

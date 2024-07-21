@@ -19,7 +19,8 @@ public class ObjectLiteralPatternNode extends ObjectPatternNode {
 
     /**
      * Constructor of the JSON object pattern node.
-     * @param expected The string representation of the expected JSON object pattern.
+     *
+     * @param expected         The string representation of the expected JSON object pattern.
      * @param expectedChildren The expected pairs of key and value pattern node.
      */
     public ObjectLiteralPatternNode(@NotNull String expected, @NotNull Map<String, JsonPatternNode> expectedChildren) {

@@ -15,7 +15,8 @@ public class ArrayLiteralPatternNode extends ArrayPatternNode {
 
     /**
      * Constructor of the JSON array pattern node.
-     * @param expected The string representation of the expected JSON array pattern.
+     *
+     * @param expected         The string representation of the expected JSON array pattern.
      * @param expectedChildren The expected patterns for each element of the array.
      */
     public ArrayLiteralPatternNode(@NotNull String expected, @NotNull List<JsonPatternNode> expectedChildren) {

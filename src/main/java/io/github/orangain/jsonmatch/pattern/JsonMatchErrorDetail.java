@@ -14,10 +14,11 @@ public class JsonMatchErrorDetail {
 
     /**
      * Constructor of the JSON match error detail.
-     * @param path The JSON path where the error occurred.
-     * @param actual The actual JSON string.
+     *
+     * @param path     The JSON path where the error occurred.
+     * @param actual   The actual JSON string.
      * @param expected The expected JSON string.
-     * @param reason The reason for the error.
+     * @param reason   The reason for the error.
      */
     public JsonMatchErrorDetail(@NotNull JsonPath path, @NotNull String actual, @NotNull String expected, @NotNull String reason) {
         this.path = path;
@@ -36,6 +37,7 @@ public class JsonMatchErrorDetail {
 
     /**
      * Creates a new JSON match error detail with the expected JSON string.
+     *
      * @param expected The expected JSON string.
      * @return A new JSON match error detail.
      */

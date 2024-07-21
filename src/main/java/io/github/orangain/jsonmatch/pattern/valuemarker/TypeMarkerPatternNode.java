@@ -2,9 +2,9 @@ package io.github.orangain.jsonmatch.pattern.valuemarker;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
-import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.json.JsonPath;
 import io.github.orangain.jsonmatch.json.JsonUtil;
+import io.github.orangain.jsonmatch.pattern.JsonMatchErrorDetail;
 import io.github.orangain.jsonmatch.pattern.ValuePatternNode;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,9 +36,10 @@ public class TypeMarkerPatternNode extends ValuePatternNode {
 
     /**
      * Constructor of the JSON type marker pattern node.
-     * @param expected The string representation of the expected JSON type marker pattern.
+     *
+     * @param expected         The string representation of the expected JSON type marker pattern.
      * @param expectedNodeType The expected JSON node type.
-     * @param reasonOnError The reason for the error when the actual node does not match the expected node type.
+     * @param reasonOnError    The reason for the error when the actual node does not match the expected node type.
      */
     public TypeMarkerPatternNode(@NotNull String expected, JsonNodeType expectedNodeType, @NotNull String reasonOnError) {
         super(expected);

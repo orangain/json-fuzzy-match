@@ -13,8 +13,9 @@ public class JsonMatchError {
 
     /**
      * Constructor of the JSON match error.
-     * @param message The error message.
-     * @param actual The actual JSON string.
+     *
+     * @param message  The error message.
+     * @param actual   The actual JSON string.
      * @param expected The expected JSON string.
      */
     public JsonMatchError(@NotNull String message, @NotNull String actual, @NotNull String expected) {
@@ -25,6 +26,7 @@ public class JsonMatchError {
 
     /**
      * Get the error message.
+     *
      * @return The error message.
      */
     public @NotNull String getMessage() {
@@ -33,6 +35,7 @@ public class JsonMatchError {
 
     /**
      * Get the actual JSON string.
+     *
      * @return The actual JSON string.
      */
     public @NotNull String getActual() {
@@ -41,6 +44,7 @@ public class JsonMatchError {
 
     /**
      * Get the expected JSON string.
+     *
      * @return The expected JSON string.
      */
     public @NotNull String getExpected() {

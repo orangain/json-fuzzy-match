@@ -12,6 +12,7 @@ import java.util.Optional;
 public class ObjectMarkerPatternNode extends ObjectPatternNode {
     /**
      * Constructor of the JSON object pattern node.
+     *
      * @param expected The string representation of the expected JSON object pattern.
      */
     public ObjectMarkerPatternNode(@NotNull String expected) {
